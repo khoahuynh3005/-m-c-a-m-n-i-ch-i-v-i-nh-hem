@@ -57,7 +57,7 @@
     <div class="w-full h-[220px] mb-4 flex items-center justify-center overflow-hidden rounded-2xl bg-pink-50/50">
       <img
         id="imageDisplay"
-        src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExM3Z2eHBiZWpndTF3dW96YWN4dTh2dWh4aTJqNXA1OHI0ZWhuaWh6OSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/cLS1cfAOGM7rtKptNn/giphy.gif"
+        src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExZ2pobTh2Ym90cHVnY21mZnRiNmM2bGxiMXVpbG03NDNraXhtaHlkdyZlcD12MV9naWZzX3NlYXJjaCZjdD1n/vFKqnCdLPNOKc/giphy.gif"
         alt="Cute Kitten GIF"
         class="h-full w-full object-contain"
       />
@@ -198,8 +198,8 @@
     let currentSelectedLocation = '';
 
     // CÁC HÌNH GIF KHÁC NHAU CHO MỖI LỰA CHỌN
-    const GIF_HCM = 'https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExM3Z2eHBiZWpndTF3dW96YWN4dTh2dWh4aTJqNXA1OHI0ZWhuaWh6OSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/cLS1cfAOGM7rtKptNn/giphy.gif'; 
-    const GIF_VT = 'https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExM2FwZjVzcG4xcWJpYTZuNnY0NXpwc3F5Yzg1eWV1OHIyaWJseXV4ZyZlcD12MV9naWZzX3NlYXJjaCZjdD1n/BzyTuYCmvSORqs1ABM/giphy.gif'; // Mèo nằm biển chill
+    const GIF_HCM = 'https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExbWRhdHF5eXVpamkyNnJxNzNzd216b2t4ZzJucGF5bGxsMjBweno5eiZlcD12MV9naWZzX3NlYXJjaCZjdD1n/ZAus9c2jNDsdaikSev/giphy.gif'; 
+    const GIF_VT = 'https://pusheen.com/wp-content/uploads/2018/08/tumblr_p8xzquv22l1qhy6c9o1_1280.gif'; // Mèo nằm biển chill
     const GIF_FINAL = 'https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExbTBwbHZ1OHhhNWx5Z2p3OWsydHkzOXdwZnJ2N2E1Z3Yyb2ZjcjlxNyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/6Is1FJGR0Przj9Wu6i/giphy.gif'; // Mèo mừng sinh nhật
 
     function selectLocation(loc) {
@@ -211,7 +211,7 @@
       const vtDetails = document.getElementById('vtDetails');
 
       if (loc === 'HCM') {
-        document.getElementById('imageDisplay').src = 'https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExNXdwNGlyYmVseXgwMzJ1dHZtZTNseHZ2bzRrd3Z5Y2c0bWdjaGVwcyZlcD12MV9naWZzX3NlYXJjaCZjdD1n/11a9K75oA22Y36/giphy.gif'; // Mèo dạo phố
+        document.getElementById('imageDisplay').src = 'https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExbWRhdHF5eXVpamkyNnJxNzNzd216b2t4ZzJucGF5bGxsMjBweno5eiZlcD12MV9naWZzX3NlYXJjaCZjdD1n/ZAus9c2jNDsdaikSev/giphy.gif'; // Mèo dạo phố
         hcmDetails.classList.remove('hidden');
         vtDetails.classList.add('hidden');
       } else {
@@ -240,13 +240,13 @@
       const summaryContent = document.getElementById('summaryContent');
 
       const SAD_CAT_GIFS = [
-        'https://media.giphy.com/media/ISOckXUvpE92w/giphy.gif',
-        'https://media.giphy.com/media/ROF8OQvDmxytW/giphy.gif',
-        'https://media.giphy.com/media/d22UJ47yvGDXdbq0/giphy.gif',
-        'https://media.giphy.com/media/TW8Ma1S9553CI/giphy.gif'
+        'https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExcGswZTN5aGtkdW0xZmpkajQxdXBwbGpjdW8zemtld3k2ZzBrMXNhMyZlcD12MV9naWZzX3NlYXJjaCZjdD1n/bt5wJeCLwaDqBksKyS/giphy.gif',
+        'https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExcGswZTN5aGtkdW0xZmpkajQxdXBwbGpjdW8zemtld3k2ZzBrMXNhMyZlcD12MV9naWZzX3NlYXJjaCZjdD1n/hECJDGJs4hQjjWLqRV/giphy.gif',
+        'https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExZnJyMm85dGdreDMyeGMyNXMyaWV2b243cGZsb3ppdm1sbnJuMXV6YiZlcD12MV9naWZzX3NlYXJjaCZjdD1n/lGBecpB2dIMwt6ohfI/giphy.gif',
+        'https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExcHhuZzV6OXNzeXdzcDJ1NndrZ2R2NTUxdWlrOHAxbW84djJhOG56NiZlcD12MV9naWZzX3NlYXJjaCZjdD1n/9Z7SJLN4UYgGcVZQaJ/giphy.gif'
       ];
 
-      const NO_MESSAGES = ['Hok 🥺', 'Ẻm chắc chưa? 😢', 'Năn nỉ em í 🙏', 'Đừng mà... 💔', 'Bấm nhầm đúng hông 😭'];
+      const NO_MESSAGES = ['Hok 🥺', 'Ẻm chắc chưa? 😢', 'Năn nỉ em í 🙏', 'Đừng mà... 💔', 'Vỡn hả ní =))))'];
 
       let clickCount = 0;
       let yesPaddingY = 12;
@@ -267,14 +267,14 @@
         // TĂNG KÍCH THƯỚC CẢ KHUNG VÀ FONT CHỮ CỦA NÚT "MÚN CHỨ"
         yesPaddingY += 10;
         yesPaddingX += 18;
-        yesFontSize += 6; // Chữ to rõ rệt luôn
+        yesFontSize += 10; // Chữ to rõ rệt luôn
 
         yesButton.style.padding = `${yesPaddingY}px ${yesPaddingX}px`;
         yesButton.style.fontSize = `${yesFontSize}px`;
 
         // Nút Hok nhảy vị trí ngẫu nhiên
         noButton.style.position = 'fixed';
-        const padding = 40;
+        const padding = 20;
         const maxX = window.innerWidth - noButton.offsetWidth - padding;
         const maxY = window.innerHeight - noButton.offsetHeight - padding;
 
@@ -290,7 +290,7 @@
       noButton.addEventListener('click', (e) => { e.preventDefault(); makeNoButtonRun(); });
 
       yesButton.addEventListener('click', () => {
-        imageDisplay.src = 'https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExM3Z2eHBiZWpndTF3dW96YWN4dTh2dWh4aTJqNXA1OHI0ZWhuaWh6OSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/cLS1cfAOGM7rtKptNn/giphy.gif';
+        imageDisplay.src = 'https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExeG1xODh5cG93bWVwOTExc3YxcmVnYTExeDRzZ2ZxOGF3amUyZTJheCZlcD12MV9naWZzX3NlYXJjaCZjdD1n/umxRbhpV3joNMeS4Xx/giphy.gif';
         valentineQuestion.textContent = 'Chốt đơn! Chọn địa điểm quẩy nè 🥳';
         responseButtons.style.display = 'none';
         locationSelection.classList.remove('hidden');
