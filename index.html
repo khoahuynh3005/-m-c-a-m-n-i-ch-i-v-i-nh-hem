@@ -39,33 +39,95 @@
   <link rel="preload" as="image" href="./images/image6.gif">
   <link rel="preload" as="image" href="./images/image7.gif">
 </head>
-<body class="gradient-background">
-  <main class="flex items-center justify-center h-screen">
-    <section class="flex flex-col items-center p-4">
-      <img
-        id="imageDisplay"
-        src="./images/image1.gif"
-        alt="Cute kitten with flowers"
-        class="rounded-md h-[300px] object-cover"
-      />
-      <h1 id="valentineQuestion" class="text-4xl font-bold italic text-[#bd1e59] my-4">
-        Will you be my Valentine?
-      </h1>
-      <div id="responseButtons" class="flex gap-4 pt-5 items-center">
-        <button
-          id="yesButton"
-          class="bounce inline-flex items-center justify-center whitespace-nowrap rounded-md text-xl font-medium cursor-pointer px-4 py-2 bg-green-500 text-white transition-all duration-300 ease-in-out hover:bg-green-400 min-h-12 min-w-[75px]"
-        >
-          Yes
-        </button>
-        <button
-          id="noButton"
-          class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-xl font-medium cursor-pointer px-4 py-2 bg-red-500 text-white transition-colors hover:bg-red-700 h-12 min-w-[75px]"
-        >
-          No
-        </button>
+<body class="gradient-background flex items-center justify-center p-4">
+  <main class="w-full max-w-md bg-white/80 backdrop-blur-sm p-6 rounded-2xl shadow-xl flex flex-col items-center text-center my-auto">
+    
+    <!-- Hình ảnh đại diện -->
+    <img
+      id="imageDisplay"
+      src="./images/image1.gif"
+      alt="Cute kitten with flowers"
+      class="rounded-xl h-[250px] object-cover mb-4 shadow-sm"
+    />
+
+    <!-- Câu hỏi chính -->
+    <h1 id="valentineQuestion" class="text-3xl font-bold italic text-[#bd1e59] my-2">
+      Will you be my Valentine?
+    </h1>
+
+    <!-- NÚT BẤM YES/NO MÀN HÌNH 1 -->
+    <div id="responseButtons" class="flex gap-4 pt-4 items-center justify-center min-h-[60px]">
+      <button
+        id="yesButton"
+        class="bounce inline-flex items-center justify-center whitespace-nowrap rounded-lg text-xl font-medium cursor-pointer px-4 py-2 bg-green-500 text-white transition-all duration-300 ease-in-out hover:bg-green-400 min-h-12 min-w-[75px] shadow-md"
+      >
+        Yes
+      </button>
+      <button
+        id="noButton"
+        class="inline-flex items-center justify-center whitespace-nowrap rounded-lg text-xl font-medium cursor-pointer px-4 py-2 bg-red-500 text-white transition-colors hover:bg-red-700 h-12 min-w-[75px] shadow-md"
+      >
+        No
+      </button>
+    </div>
+
+    <!-- BẢNG 2 LỰA CHỌN (Ẩn ban đầu, bấm Yes mới hiện) -->
+    <div id="optionsContainer" class="hidden w-full text-left mt-4 space-y-4">
+      <!-- Lựa chọn 1: Ăn gì -->
+      <div class="bg-pink-50/80 p-4 rounded-xl border border-pink-200 shadow-sm">
+        <label class="block text-lg font-bold text-[#bd1e59] mb-2">1. Cuối tuần này tụi mình ăn gì ta? 🍲</label>
+        <div class="space-y-2 text-gray-700">
+          <label class="flex items-center gap-2 cursor-pointer hover:text-pink-600 transition-colors">
+            <input type="radio" name="food" value="Đồ Hàn Quốc 🇰🇷" class="accent-pink-500 w-4 h-4" checked>
+            <span>Đồ Hàn Quốc 🇰🇷</span>
+          </label>
+          <label class="flex items-center gap-2 cursor-pointer hover:text-pink-600 transition-colors">
+            <input type="radio" name="food" value="Lẩu/Nướng xì xèo 🥩" class="accent-pink-500 w-4 h-4">
+            <span>Lẩu / Nướng xì xèo 🥩</span>
+          </label>
+          <label class="flex items-center gap-2 cursor-pointer hover:text-pink-600 transition-colors">
+            <input type="radio" name="food" value="Dắt đi quán bí mật 🤫" class="accent-pink-500 w-4 h-4">
+            <span>Dắt đi quán bí mật 🤫</span>
+          </label>
+        </div>
       </div>
-    </section>
+
+      <!-- Lựa chọn 2: Làm gì -->
+      <div class="bg-pink-50/80 p-4 rounded-xl border border-pink-200 shadow-sm">
+        <label class="block text-lg font-bold text-[#bd1e59] mb-2">2. Ăn xong mình làm gì tiếp nhỉ? 🎬</label>
+        <div class="space-y-2 text-gray-700">
+          <label class="flex items-center gap-2 cursor-pointer hover:text-pink-600 transition-colors">
+            <input type="checkbox" name="activity" value="Xem phim 🍿" class="accent-pink-500 w-4 h-4 rounded" checked>
+            <span>Đi xem phim 🍿</span>
+          </label>
+          <label class="flex items-center gap-2 cursor-pointer hover:text-pink-600 transition-colors">
+            <input type="checkbox" name="activity" value="Tô tượng/Làm gốm 🎨" class="accent-pink-500 w-4 h-4 rounded">
+            <span>Tô tượng / Làm gốm 🎨</span>
+          </label>
+          <label class="flex items-center gap-2 cursor-pointer hover:text-pink-600 transition-colors">
+            <input type="checkbox" name="activity" value="Đi cafe dạo phố ☕" class="accent-pink-500 w-4 h-4 rounded">
+            <span>Đi cafe dạo phố ☕</span>
+          </label>
+        </div>
+      </div>
+
+      <!-- Nút Chốt đơn -->
+      <button
+        id="submitOptionsBtn"
+        class="w-full py-3 bg-[#bd1e59] text-white font-bold text-lg rounded-xl shadow-lg hover:bg-[#a0184a] transition-all transform hover:scale-[1.02] active:scale-95"
+      >
+        Chốt đơn luôn! 💕
+      </button>
+    </div>
+
+    <!-- MÀN HÌNH TỔNG HỢP / CẢM ƠN (Ẩn ban đầu) -->
+    <div id="finalSummary" class="hidden text-center mt-2 space-y-3">
+      <div id="summaryContent" class="bg-pink-50 p-4 rounded-xl text-gray-700 leading-relaxed text-left border border-pink-200 shadow-inner">
+        <!-- Nội dung sẽ được điền bằng JavaScript -->
+      </div>
+      <p class="text-xs text-gray-400 italic">📸 Chụp màn hình này gửi lại cho tui nhen!</p>
+    </div>
+
   </main>
 
   <script>
@@ -76,6 +138,10 @@
       const imageDisplay = document.getElementById('imageDisplay');
       const valentineQuestion = document.getElementById('valentineQuestion');
       const responseButtons = document.getElementById('responseButtons');
+      const optionsContainer = document.getElementById('optionsContainer');
+      const submitOptionsBtn = document.getElementById('submitOptionsBtn');
+      const finalSummary = document.getElementById('finalSummary');
+      const summaryContent = document.getElementById('summaryContent');
 
       // Configuration
       const GROWTH_PER_CLICK = 35;
@@ -117,6 +183,7 @@
       let buttonWidth = 80;
       let fontSize = 20;
 
+      // Xử lý nút NO
       noButton.addEventListener('click', () => {
         if (noClickCount >= MAX_NO_CLICKS) return;
 
@@ -126,7 +193,7 @@
         imageDisplay.src = IMAGE_PATHS[noClickCount];
         imageDisplay.alt = ALT_TEXTS[noClickCount];
 
-        // Grow the "Yes" button to make it harder to ignore
+        // Grow the "Yes" button
         buttonHeight += GROWTH_PER_CLICK;
         buttonWidth += GROWTH_PER_CLICK;
         fontSize += FONT_GROWTH_PER_CLICK;
@@ -135,17 +202,26 @@
         yesButton.style.width = `${buttonWidth}px`;
         yesButton.style.fontSize = `${fontSize}px`;
 
-        // Update "No" button text with increasingly desperate messages
+        // Update "No" button text
         noButton.textContent = NO_BUTTON_MESSAGES[noClickCount];
       });
 
+      // Xử lý nút YES
       yesButton.addEventListener('click', () => {
+        // Đổi sang ảnh ăn mừng (image7.gif)
         imageDisplay.src = IMAGE_PATHS[IMAGE_PATHS.length - 1];
         imageDisplay.alt = ALT_TEXTS[ALT_TEXTS.length - 1];
-        valentineQuestion.textContent = 'Yayyy!! :3';
+        
+        // Đổi câu hỏi tiêu đề
+        valentineQuestion.textContent = 'Yayyy!! Chọn lịch đi chơi nè :3';
+        
+        // Ẩn nút Yes/No
         responseButtons.style.display = 'none';
 
-        // Heart-shaped confetti for a valentine theme
+        // Hiện bảng 2 lựa chọn
+        optionsContainer.classList.remove('hidden');
+
+        // Bắn pháo hoa trái tim
         const heart = confetti.shapeFromPath({
           path: 'M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z',
         });
@@ -155,6 +231,32 @@
         confetti({ ...defaults, particleCount: 50, scalar: 2 });
         confetti({ ...defaults, particleCount: 25, scalar: 3 });
         confetti({ ...defaults, particleCount: 10, scalar: 4 });
+      });
+
+      // Xử lý bấm nút Chốt đơn
+      submitOptionsBtn.addEventListener('click', () => {
+        // Lấy thông tin món ăn được chọn
+        const selectedFood = document.querySelector('input[name="food"]:checked')?.value || "Ăn gì cũng được";
+
+        // Lấy danh sách hoạt động được chọn
+        const selectedActivities = Array.from(document.querySelectorAll('input[name="activity"]:checked'))
+          .map(cb => cb.value);
+
+        const activitiesText = selectedActivities.length > 0 ? selectedActivities.join(', ') : "về nghỉ ngơi sớm";
+
+        // Cập nhật giao diện màn hình cuối
+        valentineQuestion.textContent = 'Hẹn gặp bồ cuối tuần này nha! 🥰';
+        optionsContainer.classList.add('hidden');
+        finalSummary.classList.remove('hidden');
+
+        summaryContent.innerHTML = `
+          <p class="font-bold text-[#bd1e59] mb-1"> Lịch trình chốt đơn:</p>
+          <p><b>• Món ăn:</b> ${selectedFood}</p>
+          <p><b>• Hoạt động:</b> ${activitiesText}</p>
+        `;
+
+        // Bắn thêm 1 đợt pháo hoa chúc mừng
+        confetti({ particleCount: 80, spread: 70, origin: { y: 0.6 } });
       });
     })();
   </script>
