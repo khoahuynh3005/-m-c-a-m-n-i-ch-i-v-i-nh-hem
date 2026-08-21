@@ -30,14 +30,6 @@
       }
     }
   </style>
-  <!-- Preload images so transitions feel instant -->
-  <link rel="preload" as="image" href="./images/image1.gif">
-  <link rel="preload" as="image" href="./images/image2.gif">
-  <link rel="preload" as="image" href="./images/image3.gif">
-  <link rel="preload" as="image" href="./images/image4.gif">
-  <link rel="preload" as="image" href="./images/image5.gif">
-  <link rel="preload" as="image" href="./images/image6.gif">
-  <link rel="preload" as="image" href="./images/image7.gif">
 </head>
 <body class="gradient-background flex items-center justify-center p-4">
   <main class="w-full max-w-md bg-white/80 backdrop-blur-sm p-6 rounded-2xl shadow-xl flex flex-col items-center text-center my-auto">
@@ -45,7 +37,7 @@
     <!-- Hình ảnh đại diện -->
     <img
       id="imageDisplay"
-      src="./images/image1.gif"
+      src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHp1eXU1ZnRkbmJ1eXp5bWVmNWt6bWFsbXpjdW82cXBqNmd5Zmc0NSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/cLS1cf3xm38wmRASY2/giphy.gif"
       alt="Cute kitten with flowers"
       class="rounded-xl h-[250px] object-cover mb-4 shadow-sm"
     />
@@ -71,43 +63,103 @@
       </button>
     </div>
 
-    <!-- BẢNG 2 LỰA CHỌN (Ẩn ban đầu, bấm Yes mới hiện) -->
+    <!-- BẢNG TÙY CHỌN LỊCH HẸN HÒ (Hiện sau khi bấm YES) -->
     <div id="optionsContainer" class="hidden w-full text-left mt-4 space-y-4">
-      <!-- Lựa chọn 1: Ăn gì -->
+      
+      <!-- BƯỚC 1: CHỌN ĐỊA ĐIỂM -->
       <div class="bg-pink-50/80 p-4 rounded-xl border border-pink-200 shadow-sm">
-        <label class="block text-lg font-bold text-[#bd1e59] mb-2">1. Cuối tuần này tụi mình ăn gì ta? 🍲</label>
-        <div class="space-y-2 text-gray-700">
-          <label class="flex items-center gap-2 cursor-pointer hover:text-pink-600 transition-colors">
-            <input type="radio" name="food" value="Đồ Hàn Quốc 🇰🇷" class="accent-pink-500 w-4 h-4" checked>
-            <span>Đồ Hàn Quốc 🇰🇷</span>
+        <label class="block text-lg font-bold text-[#bd1e59] mb-2">Tụi mình sẽ đi đâu nè? 📍</label>
+        <div class="flex gap-4 text-gray-700">
+          <label class="flex items-center gap-2 cursor-pointer font-medium hover:text-pink-600 transition-colors">
+            <input type="radio" name="location" value="HCM" class="accent-pink-500 w-4 h-4" onchange="toggleLocationOptions('HCM')" checked>
+            <span>Hồ Chí Minh 🏙️</span>
           </label>
-          <label class="flex items-center gap-2 cursor-pointer hover:text-pink-600 transition-colors">
-            <input type="radio" name="food" value="Lẩu/Nướng xì xèo 🥩" class="accent-pink-500 w-4 h-4">
-            <span>Lẩu / Nướng xì xèo 🥩</span>
-          </label>
-          <label class="flex items-center gap-2 cursor-pointer hover:text-pink-600 transition-colors">
-            <input type="radio" name="food" value="Dắt đi quán bí mật 🤫" class="accent-pink-500 w-4 h-4">
-            <span>Dắt đi quán bí mật 🤫</span>
+          <label class="flex items-center gap-2 cursor-pointer font-medium hover:text-pink-600 transition-colors">
+            <input type="radio" name="location" value="VT" class="accent-pink-500 w-4 h-4" onchange="toggleLocationOptions('VT')">
+            <span>Vũng Tàu 🌊</span>
           </label>
         </div>
       </div>
 
-      <!-- Lựa chọn 2: Làm gì -->
-      <div class="bg-pink-50/80 p-4 rounded-xl border border-pink-200 shadow-sm">
-        <label class="block text-lg font-bold text-[#bd1e59] mb-2">2. Ăn xong mình làm gì tiếp nhỉ? 🎬</label>
-        <div class="space-y-2 text-gray-700">
-          <label class="flex items-center gap-2 cursor-pointer hover:text-pink-600 transition-colors">
-            <input type="checkbox" name="activity" value="Xem phim 🍿" class="accent-pink-500 w-4 h-4 rounded" checked>
-            <span>Đi xem phim 🍿</span>
-          </label>
-          <label class="flex items-center gap-2 cursor-pointer hover:text-pink-600 transition-colors">
-            <input type="checkbox" name="activity" value="Tô tượng/Làm gốm 🎨" class="accent-pink-500 w-4 h-4 rounded">
-            <span>Tô tượng / Làm gốm 🎨</span>
-          </label>
-          <label class="flex items-center gap-2 cursor-pointer hover:text-pink-600 transition-colors">
-            <input type="checkbox" name="activity" value="Đi cafe dạo phố ☕" class="accent-pink-500 w-4 h-4 rounded">
-            <span>Đi cafe dạo phố ☕</span>
-          </label>
+      <!-- BẢNG 1: TÙY CHỌN HỒ CHÍ MINH -->
+      <div id="hcmOptions" class="space-y-4">
+        <!-- Mục 1: Ăn uống HCM -->
+        <div class="bg-pink-50/80 p-4 rounded-xl border border-pink-200 shadow-sm">
+          <label class="block text-md font-bold text-[#bd1e59] mb-2">1. Ăn món gì ở Sài Gòn đây? 🍲</label>
+          <div class="space-y-2 text-gray-700">
+            <label class="flex items-center gap-2 cursor-pointer hover:text-pink-600">
+              <input type="radio" name="hcmFood" value="Món Hàn Quốc 🇰🇷" class="accent-pink-500 w-4 h-4" checked>
+              <span>Món Hàn Quốc 🇰🇷</span>
+            </label>
+            <label class="flex items-center gap-2 cursor-pointer hover:text-pink-600">
+              <input type="radio" name="hcmFood" value="Món Nhật Bản 🇯🇵" class="accent-pink-500 w-4 h-4">
+              <span>Món Nhật Bản 🇯🇵</span>
+            </label>
+            <label class="flex items-center gap-2 cursor-pointer hover:text-pink-600">
+              <input type="radio" name="hcmFood" value="Món Việt Nam 🇻🇳" class="accent-pink-500 w-4 h-4">
+              <span>Món Việt Nam 🇻🇳</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Mục 2: Hoạt động HCM -->
+        <div class="bg-pink-50/80 p-4 rounded-xl border border-pink-200 shadow-sm">
+          <label class="block text-md font-bold text-[#bd1e59] mb-2">2. Ăn xong mình đi đâu tiếp? 🛵</label>
+          <div class="space-y-2 text-gray-700">
+            <label class="flex items-center gap-2 cursor-pointer hover:text-pink-600">
+              <input type="checkbox" name="hcmAct" value="Đi mall dạo phố 🛍️" class="accent-pink-500 w-4 h-4 rounded" checked>
+              <span>Đi mall dạo phố 🛍️</span>
+            </label>
+            <label class="flex items-center gap-2 cursor-pointer hover:text-pink-600">
+              <input type="checkbox" name="hcmAct" value="Đi quán bí mật 🤫" class="accent-pink-500 w-4 h-4 rounded">
+              <span>Đi quán bí mật 🤫</span>
+            </label>
+            <label class="flex items-center gap-2 cursor-pointer hover:text-pink-600">
+              <input type="checkbox" name="hcmAct" value="Thuê homestay chill chill 🏡" class="accent-pink-500 w-4 h-4 rounded">
+              <span>Thuê homestay chill chill 🏡</span>
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <!-- BẢNG 2: TÙY CHỌN VŨNG TÀU (Ẩn mặc định) -->
+      <div id="vtOptions" class="space-y-4 hidden">
+        <!-- Mục 1: Ăn uống VT -->
+        <div class="bg-pink-50/80 p-4 rounded-xl border border-pink-200 shadow-sm">
+          <label class="block text-md font-bold text-[#bd1e59] mb-2">1. Đi biển thì ăn gì nhỉ? 🦀</label>
+          <div class="space-y-2 text-gray-700">
+            <label class="flex items-center gap-2 cursor-pointer hover:text-pink-600">
+              <input type="radio" name="vtFood" value="Hải sản xèo xèo 🦀" class="accent-pink-500 w-4 h-4" checked>
+              <span>Hải sản xèo xèo 🦀</span>
+            </label>
+            <label class="flex items-center gap-2 cursor-pointer hover:text-pink-600">
+              <input type="radio" name="vtFood" value="Lẩu cá đuối nóng hổi 🍲" class="accent-pink-500 w-4 h-4">
+              <span>Lẩu cá đuối nóng hổi 🍲</span>
+            </label>
+            <label class="flex items-center gap-2 cursor-pointer hover:text-pink-600">
+              <input type="radio" name="vtFood" value="Bánh khọt góc phố 🍳" class="accent-pink-500 w-4 h-4">
+              <span>Bánh khọt góc phố 🍳</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Mục 2: Hoạt động VT -->
+        <div class="bg-pink-50/80 p-4 rounded-xl border border-pink-200 shadow-sm">
+          <label class="block text-md font-bold text-[#bd1e59] mb-2">2. Chơi gì ở Vũng Tàu ta? 🌅</label>
+          <div class="space-y-2 text-gray-700">
+            <label class="flex items-center gap-2 cursor-pointer hover:text-pink-600">
+              <input type="checkbox" name="vtAct" value="Ngắm hoàng hôn bờ biển 🌅" class="accent-pink-500 w-4 h-4 rounded" checked>
+              <span>Ngắm hoàng hôn bờ biển 🌅</span>
+            </label>
+            <label class="flex items-center gap-2 cursor-pointer hover:text-pink-600">
+              <input type="checkbox" name="vtAct" value="Check-in Hải Đăng/Mũi Nghinh Phong 📸" class="accent-pink-500 w-4 h-4 rounded">
+              <span>Check-in Hải Đăng / Mũi Nghinh Phong 📸</span>
+            </label>
+            <label class="flex items-center gap-2 cursor-pointer hover:text-pink-600">
+              <input type="checkbox" name="vtAct" value="Thuê homestay view biển chill 🏡" class="accent-pink-500 w-4 h-4 rounded">
+              <span>Thuê homestay view biển chill 🏡</span>
+            </label>
+          </div>
         </div>
       </div>
 
@@ -121,9 +173,9 @@
     </div>
 
     <!-- MÀN HÌNH TỔNG HỢP / CẢM ƠN (Ẩn ban đầu) -->
-    <div id="finalSummary" class="hidden text-center mt-2 space-y-3">
+    <div id="finalSummary" class="hidden text-center mt-2 space-y-3 w-full">
       <div id="summaryContent" class="bg-pink-50 p-4 rounded-xl text-gray-700 leading-relaxed text-left border border-pink-200 shadow-inner">
-        <!-- Nội dung sẽ được điền bằng JavaScript -->
+        <!-- Nội dung sẽ được tổng hợp bằng JavaScript -->
       </div>
       <p class="text-xs text-gray-400 italic">📸 Chụp màn hình này gửi lại cho tui nhen!</p>
     </div>
@@ -131,6 +183,20 @@
   </main>
 
   <script>
+    // Hàm chuyển đổi bảng giữa HCM và Vũng Tàu
+    function toggleLocationOptions(location) {
+      const hcmOptions = document.getElementById('hcmOptions');
+      const vtOptions = document.getElementById('vtOptions');
+      
+      if (location === 'HCM') {
+        hcmOptions.classList.remove('hidden');
+        vtOptions.classList.add('hidden');
+      } else {
+        hcmOptions.classList.add('hidden');
+        vtOptions.classList.remove('hidden');
+      }
+    }
+
     (() => {
       // DOM references
       const yesButton = document.getElementById('yesButton');
@@ -143,19 +209,14 @@
       const finalSummary = document.getElementById('finalSummary');
       const summaryContent = document.getElementById('summaryContent');
 
-      // Configuration
-      const GROWTH_PER_CLICK = 35;
-      const FONT_GROWTH_PER_CLICK = 25;
-      const MAX_NO_CLICKS = 5;
-
+      // Các ảnh GIF trực tuyến đảm bảo hiển thị 100%
       const IMAGE_PATHS = [
-        './images/image1.gif',
-        './images/image2.gif',
-        './images/image3.gif',
-        './images/image4.gif',
-        './images/image5.gif',
-        './images/image6.gif',
-        './images/image7.gif',
+        'https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHp1eXU1ZnRkbmJ1eXp5bWVmNWt6bWFsbXpjdW82cXBqNmd5Zmc0NSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/cLS1cf3xm38wmRASY2/giphy.gif',
+        'https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHp2ZXJhOHhpeGsyeXZoc2U0OGNyd3lqenozdXpxa3BtbGttY3ZkayZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/L952342pdG4mg/giphy.gif',
+        'https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExNndic2pxcGZ1cGZxeTlhOTIxcGFpMnBhYmVudHFpNWJxbzBvdDByZCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/7SF1r803215ptx254Y/giphy.gif',
+        'https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExMnptZnk4Mzg4OTlhZjM3dGRqZmIyeXBsd2t3ODlhczd2aXU3bzE0NSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/OPU6wzx8JrHna/giphy.gif',
+        'https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExNnk1eGVubHdqazAyc2NvZmx2YXNxdzUxdGVrdWFtNW55c3c0dGZneSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/d22Nyp394QC33076/giphy.gif',
+        'https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExNGQzbHN2YmxsbzB1eWlreGN5c3R4eDVxcGFxcnYxN2Eyb2M1NHBhMiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/MDJ9IbxxvDUQM/giphy.gif'
       ];
 
       const NO_BUTTON_MESSAGES = [
@@ -167,17 +228,10 @@
         "I'm gonna cry...",
       ];
 
-      const ALT_TEXTS = [
-        'Cute kitten with flowers',
-        'Sad kitten looking up',
-        'Kitten begging',
-        'Heartbroken kitten',
-        'Crying kitten',
-        'Devastated kitten',
-        'Happy kitten celebrating',
-      ];
+      const GROWTH_PER_CLICK = 35;
+      const FONT_GROWTH_PER_CLICK = 25;
+      const MAX_NO_CLICKS = 5;
 
-      // State
       let noClickCount = 0;
       let buttonHeight = 48;
       let buttonWidth = 80;
@@ -189,11 +243,8 @@
 
         noClickCount++;
 
-        // Update image and alt text
-        imageDisplay.src = IMAGE_PATHS[noClickCount];
-        imageDisplay.alt = ALT_TEXTS[noClickCount];
+        imageDisplay.src = IMAGE_PATHS[noClickCount % (IMAGE_PATHS.length - 1)];
 
-        // Grow the "Yes" button
         buttonHeight += GROWTH_PER_CLICK;
         buttonWidth += GROWTH_PER_CLICK;
         fontSize += FONT_GROWTH_PER_CLICK;
@@ -202,23 +253,17 @@
         yesButton.style.width = `${buttonWidth}px`;
         yesButton.style.fontSize = `${fontSize}px`;
 
-        // Update "No" button text
         noButton.textContent = NO_BUTTON_MESSAGES[noClickCount];
       });
 
       // Xử lý nút YES
       yesButton.addEventListener('click', () => {
-        // Đổi sang ảnh ăn mừng (image7.gif)
+        // Đổi sang ảnh mèo ăn mừng
         imageDisplay.src = IMAGE_PATHS[IMAGE_PATHS.length - 1];
-        imageDisplay.alt = ALT_TEXTS[ALT_TEXTS.length - 1];
         
-        // Đổi câu hỏi tiêu đề
         valentineQuestion.textContent = 'Yayyy!! Chọn lịch đi chơi nè :3';
-        
-        // Ẩn nút Yes/No
         responseButtons.style.display = 'none';
 
-        // Hiện bảng 2 lựa chọn
         optionsContainer.classList.remove('hidden');
 
         // Bắn pháo hoa trái tim
@@ -235,27 +280,31 @@
 
       // Xử lý bấm nút Chốt đơn
       submitOptionsBtn.addEventListener('click', () => {
-        // Lấy thông tin món ăn được chọn
-        const selectedFood = document.querySelector('input[name="food"]:checked')?.value || "Ăn gì cũng được";
+        const selectedLoc = document.querySelector('input[name="location"]:checked').value;
+        let food = "", acts = [];
 
-        // Lấy danh sách hoạt động được chọn
-        const selectedActivities = Array.from(document.querySelectorAll('input[name="activity"]:checked'))
-          .map(cb => cb.value);
+        if (selectedLoc === 'HCM') {
+          food = document.querySelector('input[name="hcmFood"]:checked')?.value || "Ăn gì cũng được";
+          acts = Array.from(document.querySelectorAll('input[name="hcmAct"]:checked')).map(cb => cb.value);
+        } else {
+          food = document.querySelector('input[name="vtFood"]:checked')?.value || "Ăn gì cũng được";
+          acts = Array.from(document.querySelectorAll('input[name="vtAct"]:checked')).map(cb => cb.value);
+        }
 
-        const activitiesText = selectedActivities.length > 0 ? selectedActivities.join(', ') : "về nghỉ ngơi sớm";
+        const locName = selectedLoc === 'HCM' ? 'Hồ Chí Minh 🏙️' : 'Vũng Tàu 🌊';
+        const activitiesText = acts.length > 0 ? acts.join(', ') : 'về nghỉ ngơi sớm';
 
-        // Cập nhật giao diện màn hình cuối
-        valentineQuestion.textContent = 'Hẹn gặp bồ cuối tuần này nha! 🥰';
+        valentineQuestion.textContent = 'Hẹn gặp bồ chuyến đi tới nha! 🥰';
         optionsContainer.classList.add('hidden');
         finalSummary.classList.remove('hidden');
 
         summaryContent.innerHTML = `
-          <p class="font-bold text-[#bd1e59] mb-1"> Lịch trình chốt đơn:</p>
-          <p><b>• Món ăn:</b> ${selectedFood}</p>
+          <p class="font-bold text-[#bd1e59] mb-1">📌 Lịch trình đã chốt:</p>
+          <p><b>• Địa điểm:</b> ${locName}</p>
+          <p><b>• Món ăn:</b> ${food}</p>
           <p><b>• Hoạt động:</b> ${activitiesText}</p>
         `;
 
-        // Bắn thêm 1 đợt pháo hoa chúc mừng
         confetti({ particleCount: 80, spread: 70, origin: { y: 0.6 } });
       });
     })();
