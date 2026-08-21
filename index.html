@@ -3,9 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="A cute Valentine's Day page to ask someone to be your Valentine!">
-  <meta name="theme-color" content="#ffd0e5">
-  <title>Valentine's Day</title>
+  <title>Ẻm cóa mún đi chưi với anh hemmmmm?</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
   <style>
@@ -19,68 +17,88 @@
     }
 
     @keyframes bounce {
-      0%, 20%, 50%, 80%, 100% {
-        transform: translateY(0);
-      }
-      40% {
-        transform: translateY(-20px);
-      }
-      60% {
-        transform: translateY(-10px);
-      }
+      0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+      40% { transform: translateY(-20px); }
+      60% { transform: translateY(-10px); }
+    }
+
+    /* Custom UI Cute cho Radio & Checkbox */
+    .custom-option input { display: none; }
+    .custom-option span {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 16px;
+      border-radius: 20px;
+      background-color: #fff0f5;
+      border: 2px solid #ffb6c1;
+      color: #9d174d;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      user-select: none;
+    }
+    .custom-option input:checked + span {
+      background-color: #f43f5e;
+      border-color: #f43f5e;
+      color: #ffffff;
+      box-shadow: 0 4px 10px rgba(244, 63, 94, 0.3);
+      transform: translateY(-2px);
+    }
+    .custom-option span::before {
+      content: '🤍';
+      font-size: 14px;
+    }
+    .custom-option input:checked + span::before {
+      content: '💖';
     }
   </style>
-  <!-- Preload images so transitions feel instant -->
-  <link rel="preload" as="image" href="./images/image1.gif">
-  <link rel="preload" as="image" href="./images/image2.gif">
-  <link rel="preload" as="image" href="./images/image3.gif">
-  <link rel="preload" as="image" href="./images/image4.gif">
-  <link rel="preload" as="image" href="./images/image5.gif">
-  <link rel="preload" as="image" href="./images/image6.gif">
-  <link rel="preload" as="image" href="./images/image7.gif">
 </head>
 <body class="gradient-background">
   <main class="flex items-center justify-center min-h-screen p-4">
-    <section class="flex flex-col items-center p-4 max-w-md w-full">
+    <section class="flex flex-col items-center p-6 max-w-md w-full bg-white/40 backdrop-blur-md rounded-3xl shadow-xl border border-white/60">
+      
+      <!-- GIF MÈO ONLINE DỄ THƯƠNG -->
       <img
         id="imageDisplay"
-        src="./images/image1.gif"
-        alt="Cute kitten with flowers"
-        class="rounded-md h-[300px] object-cover"
+        src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExM3Z2eHBiZWpndTF3dW96YWN4dTh2dWh4aTJqNXA1OHI0ZWhuaWh6OSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/cLS1cfAOGM7rtKptNn/giphy.gif"
+        alt="Cute Kitten"
+        class="rounded-2xl h-[260px] w-full object-cover shadow-md"
       />
-      <h1 id="valentineQuestion" class="text-4xl font-bold italic text-[#bd1e59] my-4 text-center">
+      
+      <h1 id="valentineQuestion" class="text-3xl font-bold italic text-[#bd1e59] my-4 text-center">
         Will you be my Valentine?
       </h1>
 
-      <!-- MÀN HÌNH 1: NÚT YES / NO GỐC -->
-      <div id="responseButtons" class="flex gap-4 pt-5 items-center">
+      <!-- MÀN HÌNH 1: NÚT YES / NO -->
+      <div id="responseButtons" class="flex gap-4 pt-3 items-center">
         <button
           id="yesButton"
-          class="bounce inline-flex items-center justify-center whitespace-nowrap rounded-md text-xl font-medium cursor-pointer px-4 py-2 bg-green-500 text-white transition-all duration-300 ease-in-out hover:bg-green-400 min-h-12 min-w-[75px]"
+          class="bounce inline-flex items-center justify-center whitespace-nowrap rounded-full text-xl font-bold cursor-pointer px-6 py-3 bg-pink-500 text-white shadow-lg transition-all duration-300 hover:bg-pink-600 hover:scale-105 min-h-12 min-w-[90px]"
         >
-          Yes
+          Yes 💕
         </button>
         <button
           id="noButton"
-          class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-xl font-medium cursor-pointer px-4 py-2 bg-red-500 text-white transition-colors hover:bg-red-700 h-12 min-w-[75px]"
+          class="inline-flex items-center justify-center whitespace-nowrap rounded-full text-xl font-medium cursor-pointer px-6 py-3 bg-gray-400 text-white shadow-md transition-colors hover:bg-gray-500 h-12 min-w-[90px]"
         >
-          No
+          No 🥺
         </button>
       </div>
 
-      <!-- MÀN HÌNH 2: BẢNG LỰA CHỌN (Bấm YES mới hiện) -->
-      <div id="optionsContainer" class="hidden w-full text-left mt-4 space-y-4">
+      <!-- MÀN HÌNH 2: TÙY CHỌN BẢNG CHỌN (BẬT LÊN KHI BẤM YES) -->
+      <div id="optionsContainer" class="hidden w-full text-left mt-2 space-y-5">
         
         <!-- Chọn Địa điểm -->
         <div>
-          <label class="block text-xl font-bold italic text-[#bd1e59] mb-2">Tụi mình sẽ đi đâu nè? 📍</label>
-          <div class="flex gap-6 text-gray-800 text-lg">
-            <label class="flex items-center gap-2 cursor-pointer font-medium">
-              <input type="radio" name="location" value="HCM" class="accent-[#bd1e59] w-5 h-5" onchange="toggleLocationOptions('HCM')" checked>
+          <label class="block text-lg font-bold italic text-[#bd1e59] mb-2 text-center">Tụi mình sẽ đi đâu nè? 📍</label>
+          <div class="flex justify-center gap-3">
+            <label class="custom-option">
+              <input type="radio" name="location" value="HCM" onchange="toggleLocationOptions('HCM')" checked>
               <span>Hồ Chí Minh 🏙️</span>
             </label>
-            <label class="flex items-center gap-2 cursor-pointer font-medium">
-              <input type="radio" name="location" value="VT" class="accent-[#bd1e59] w-5 h-5" onchange="toggleLocationOptions('VT')">
+            <label class="custom-option">
+              <input type="radio" name="location" value="VT" onchange="toggleLocationOptions('VT')">
               <span>Vũng Tàu 🌊</span>
             </label>
           </div>
@@ -89,37 +107,37 @@
         <!-- Option Hồ Chí Minh -->
         <div id="hcmOptions" class="space-y-4">
           <div>
-            <label class="block text-lg font-bold text-[#bd1e59] mb-1">1. Ăn món gì ở Sài Gòn đây? 🍲</label>
-            <div class="space-y-2 text-gray-700 text-base">
-              <label class="flex items-center gap-2 cursor-pointer">
-                <input type="radio" name="hcmFood" value="Món Hàn Quốc 🇰🇷" class="accent-[#bd1e59] w-4 h-4" checked>
-                <span>Món Hàn Quốc 🇰🇷</span>
+            <label class="block text-base font-bold text-[#bd1e59] mb-2">1. Ăn món gì ở Sài Gòn đây? 🍲</label>
+            <div class="flex flex-wrap gap-2">
+              <label class="custom-option">
+                <input type="radio" name="hcmFood" value="Món Hàn Quốc 🇰🇷" checked>
+                <span>Hàn Quốc 🇰🇷</span>
               </label>
-              <label class="flex items-center gap-2 cursor-pointer">
-                <input type="radio" name="hcmFood" value="Món Nhật Bản 🇯🇵" class="accent-[#bd1e59] w-4 h-4">
-                <span>Món Nhật Bản 🇯🇵</span>
+              <label class="custom-option">
+                <input type="radio" name="hcmFood" value="Món Nhật Bản 🇯🇵">
+                <span>Nhật Bản 🇯🇵</span>
               </label>
-              <label class="flex items-center gap-2 cursor-pointer">
-                <input type="radio" name="hcmFood" value="Món Việt Nam 🇻🇳" class="accent-[#bd1e59] w-4 h-4">
-                <span>Món Việt Nam 🇻🇳</span>
+              <label class="custom-option">
+                <input type="radio" name="hcmFood" value="Món Việt Nam 🇻🇳">
+                <span>Việt Nam 🇻🇳</span>
               </label>
             </div>
           </div>
 
           <div>
-            <label class="block text-lg font-bold text-[#bd1e59] mb-1">2. Ăn xong mình đi đâu tiếp? 🛵</label>
-            <div class="space-y-2 text-gray-700 text-base">
-              <label class="flex items-center gap-2 cursor-pointer">
-                <input type="checkbox" name="hcmAct" value="Đi mall dạo phố 🛍️" class="accent-[#bd1e59] w-4 h-4 rounded" checked>
+            <label class="block text-base font-bold text-[#bd1e59] mb-2">2. Ăn xong mình đi đâu tiếp? 🛵</label>
+            <div class="flex flex-wrap gap-2">
+              <label class="custom-option">
+                <input type="checkbox" name="hcmAct" value="Đi mall dạo phố 🛍️" checked>
                 <span>Đi mall dạo phố 🛍️</span>
               </label>
-              <label class="flex items-center gap-2 cursor-pointer">
-                <input type="checkbox" name="hcmAct" value="Đi quán bí mật 🤫" class="accent-[#bd1e59] w-4 h-4 rounded">
-                <span>Đi quán bí mật 🤫</span>
+              <label class="custom-option">
+                <input type="checkbox" name="hcmAct" value="Đi quán bí mật 🤫">
+                <span>Quán bí mật 🤫</span>
               </label>
-              <label class="flex items-center gap-2 cursor-pointer">
-                <input type="checkbox" name="hcmAct" value="Thuê homestay chill chill 🏡" class="accent-[#bd1e59] w-4 h-4 rounded">
-                <span>Thuê homestay chill chill 🏡</span>
+              <label class="custom-option">
+                <input type="checkbox" name="hcmAct" value="Thuê homestay chill chill 🏡">
+                <span>Homestay chill 🏡</span>
               </label>
             </div>
           </div>
@@ -128,37 +146,37 @@
         <!-- Option Vũng Tàu -->
         <div id="vtOptions" class="space-y-4 hidden">
           <div>
-            <label class="block text-lg font-bold text-[#bd1e59] mb-1">1. Đi biển thì ăn gì nhỉ? 🦀</label>
-            <div class="space-y-2 text-gray-700 text-base">
-              <label class="flex items-center gap-2 cursor-pointer">
-                <input type="radio" name="vtFood" value="Hải sản xèo xèo 🦀" class="accent-[#bd1e59] w-4 h-4" checked>
-                <span>Hải sản xèo xèo 🦀</span>
+            <label class="block text-base font-bold text-[#bd1e59] mb-2">1. Đi biển thì ăn gì nhỉ? 🦀</label>
+            <div class="flex flex-wrap gap-2">
+              <label class="custom-option">
+                <input type="radio" name="vtFood" value="Hải sản xèo xèo 🦀" checked>
+                <span>Hải sản 🦀</span>
               </label>
-              <label class="flex items-center gap-2 cursor-pointer">
-                <input type="radio" name="vtFood" value="Lẩu cá đuối nóng hổi 🍲" class="accent-[#bd1e59] w-4 h-4">
-                <span>Lẩu cá đuối nóng hổi 🍲</span>
+              <label class="custom-option">
+                <input type="radio" name="vtFood" value="Lẩu cá đuối nóng hổi 🍲">
+                <span>Lẩu cá đuối 🍲</span>
               </label>
-              <label class="flex items-center gap-2 cursor-pointer">
-                <input type="radio" name="vtFood" value="Bánh khọt góc phố 🍳" class="accent-[#bd1e59] w-4 h-4">
-                <span>Bánh khọt góc phố 🍳</span>
+              <label class="custom-option">
+                <input type="radio" name="vtFood" value="Bánh khọt góc phố 🍳">
+                <span>Bánh khọt 🍳</span>
               </label>
             </div>
           </div>
 
           <div>
-            <label class="block text-lg font-bold text-[#bd1e59] mb-1">2. Chơi gì ở Vũng Tàu ta? 🌅</label>
-            <div class="space-y-2 text-gray-700 text-base">
-              <label class="flex items-center gap-2 cursor-pointer">
-                <input type="checkbox" name="vtAct" value="Ngắm hoàng hôn bờ biển 🌅" class="accent-[#bd1e59] w-4 h-4 rounded" checked>
-                <span>Ngắm hoàng hôn bờ biển 🌅</span>
+            <label class="block text-base font-bold text-[#bd1e59] mb-2">2. Chơi gì ở Vũng Tàu ta? 🌅</label>
+            <div class="flex flex-wrap gap-2">
+              <label class="custom-option">
+                <input type="checkbox" name="vtAct" value="Ngắm hoàng hôn bờ biển 🌅" checked>
+                <span>Ngắm hoàng hôn 🌅</span>
               </label>
-              <label class="flex items-center gap-2 cursor-pointer">
-                <input type="checkbox" name="vtAct" value="Check-in Hải Đăng/Mũi Nghinh Phong 📸" class="accent-[#bd1e59] w-4 h-4 rounded">
-                <span>Check-in Hải Đăng / Mũi Nghinh Phong 📸</span>
+              <label class="custom-option">
+                <input type="checkbox" name="vtAct" value="Check-in Mũi Nghinh Phong 📸">
+                <span>Mũi Nghinh Phong 📸</span>
               </label>
-              <label class="flex items-center gap-2 cursor-pointer">
-                <input type="checkbox" name="vtAct" value="Thuê homestay view biển chill 🏡" class="accent-[#bd1e59] w-4 h-4 rounded">
-                <span>Thuê homestay view biển chill 🏡</span>
+              <label class="custom-option">
+                <input type="checkbox" name="vtAct" value="Thuê homestay view biển 🏡">
+                <span>Homestay view biển 🏡</span>
               </label>
             </div>
           </div>
@@ -166,18 +184,17 @@
 
         <button
           id="submitOptionsBtn"
-          class="w-full mt-4 py-3 bg-[#bd1e59] text-white font-bold text-lg rounded-md shadow-md hover:bg-[#a0184a] transition-all cursor-pointer"
+          class="w-full mt-4 py-3 bg-[#bd1e59] text-white font-bold text-lg rounded-full shadow-lg hover:bg-[#a0184a] transition-all cursor-pointer hover:scale-[1.02]"
         >
-          Chốt đơn luôn! 💕
+          Chốt đơn luôn! ✨
         </button>
       </div>
 
-      <!-- MÀN HÌNH 3: XÁC NHẬN / TỔNG HỢP -->
-      <div id="finalSummary" class="hidden text-center mt-4 w-full space-y-2">
-        <div id="summaryContent" class="text-left text-gray-800 text-lg leading-relaxed p-4 rounded-md border border-[#bd1e59]/30 bg-white/50">
-          <!-- JS sẽ chèn kết quả vào đây -->
+      <!-- MÀN HÌNH 3: TỔNG HỢP LỊCH TRÌNH -->
+      <div id="finalSummary" class="hidden text-center mt-3 w-full space-y-2">
+        <div id="summaryContent" class="text-left text-gray-800 text-base leading-relaxed p-4 rounded-2xl border border-pink-300 bg-white/80 shadow-inner">
         </div>
-        <p class="text-sm text-gray-500 italic pt-2">📸 Chụp màn hình này gửi lại cho tui nhen!</p>
+        <p class="text-sm text-pink-600 font-semibold italic pt-2">📸 Chụp màn hình này gửi lại cho tui nhen!</p>
       </div>
 
     </section>
@@ -197,7 +214,6 @@
     }
 
     (() => {
-      // DOM references
       const yesButton = document.getElementById('yesButton');
       const noButton = document.getElementById('noButton');
       const imageDisplay = document.getElementById('imageDisplay');
@@ -208,56 +224,40 @@
       const finalSummary = document.getElementById('finalSummary');
       const summaryContent = document.getElementById('summaryContent');
 
-      // Configuration
-      const GROWTH_PER_CLICK = 35;
-      const FONT_GROWTH_PER_CLICK = 25;
+      const GROWTH_PER_CLICK = 30;
+      const FONT_GROWTH_PER_CLICK = 12;
       const MAX_NO_CLICKS = 5;
 
+      // KHO GIF MÈO TRỰC TUYẾN MƯỢT MÀ
       const IMAGE_PATHS = [
-        './images/image1.gif',
-        './images/image2.gif',
-        './images/image3.gif',
-        './images/image4.gif',
-        './images/image5.gif',
-        './images/image6.gif',
-        './images/image7.gif',
+        'https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExM3Z2eHBiZWpndTF3dW96YWN4dTh2dWh4aTJqNXA1OHI0ZWhuaWh6OSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/cLS1cfAOGM7rtKptNn/giphy.gif', // Mèo ôm tim
+        'https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExNmNnaXk2aDFkdnA3bmdvNWdpYmExZnRzdmxwaHB1ZmxocjhicG54eiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/ISOckXUvpE92w/giphy.gif', // Mèo buồn
+        'https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExMnlvdXNmbWRpMDc1am9rdXhhYjZlbnlsZG96bGFubXlsb24xbzh5ZCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/ROF8OQvDmxytW/giphy.gif', // Mèo xin xỏ
+        'https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHM3ZnpoYjJ0OWw0YXd2OHFxeTZidnpra2lud3d1aWF5OG9vOXZpbyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/d22UJ47yvGDXdbq0/giphy.gif', // Mèo khóc
+        'https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExN3RzbHNtMHlhNGI1OGZ0bGl6OHI4NHJqczd2NzBhMzA0ZmFocWZ6ayZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/TW8Ma1S9553CI/giphy.gif', // Mèo suy sụp
+        'https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExYnJ2bzRqZTVxMmY0cTlwa3psM2Y4cGF3MXNveGFxZzA5MzJwYXNnOCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/6Is1FJGR0Przj9Wu6i/giphy.gif'  // Mèo nhảy Happy
       ];
 
       const NO_BUTTON_MESSAGES = [
-        'No',
-        'Are you sure?',
-        'Pookie please',
-        "Don't do this to me :(",
-        "You're breaking my heart",
-        "I'm gonna cry...",
+        'No 🥺',
+        'Bồ chắc chưa? 😢',
+        'Năn nỉ đóooo 🙏',
+        'Đừng làm vậy mà... 💔',
+        'Tim tui đau quá 😭',
+        'Nước mắt ngắn dài luôn rồi đó...'
       ];
 
-      const ALT_TEXTS = [
-        'Cute kitten with flowers',
-        'Sad kitten looking up',
-        'Kitten begging',
-        'Heartbroken kitten',
-        'Crying kitten',
-        'Devastated kitten',
-        'Happy kitten celebrating',
-      ];
-
-      // State
       let noClickCount = 0;
       let buttonHeight = 48;
-      let buttonWidth = 80;
+      let buttonWidth = 90;
       let fontSize = 20;
 
       noButton.addEventListener('click', () => {
         if (noClickCount >= MAX_NO_CLICKS) return;
 
         noClickCount++;
-
-        // Update image and alt text
         imageDisplay.src = IMAGE_PATHS[noClickCount];
-        imageDisplay.alt = ALT_TEXTS[noClickCount];
 
-        // Grow the "Yes" button
         buttonHeight += GROWTH_PER_CLICK;
         buttonWidth += GROWTH_PER_CLICK;
         fontSize += FONT_GROWTH_PER_CLICK;
@@ -266,46 +266,39 @@
         yesButton.style.width = `${buttonWidth}px`;
         yesButton.style.fontSize = `${fontSize}px`;
 
-        // Update "No" button text
         noButton.textContent = NO_BUTTON_MESSAGES[noClickCount];
       });
 
       yesButton.addEventListener('click', () => {
         imageDisplay.src = IMAGE_PATHS[IMAGE_PATHS.length - 1];
-        imageDisplay.alt = ALT_TEXTS[ALT_TEXTS.length - 1];
         valentineQuestion.textContent = 'Yayyy!! Chọn lịch đi chơi nè :3';
         responseButtons.style.display = 'none';
 
-        // Hiện bảng chọn
         optionsContainer.classList.remove('hidden');
 
-        // Heart-shaped confetti
+        // Pháo hoa trái tim
         const heart = confetti.shapeFromPath({
           path: 'M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z',
         });
-
         const defaults = { spread: 360, ticks: 100, gravity: 0, decay: 0.94, startVelocity: 20, shapes: [heart], colors: ['#ff69b4', '#ff1493', '#ff6b81', '#e84393'] };
-
         confetti({ ...defaults, particleCount: 50, scalar: 2 });
         confetti({ ...defaults, particleCount: 25, scalar: 3 });
-        confetti({ ...defaults, particleCount: 10, scalar: 4 });
       });
 
-      // Xử lý chốt đơn
       submitOptionsBtn.addEventListener('click', () => {
         const selectedLoc = document.querySelector('input[name="location"]:checked').value;
         let food = "", acts = [];
 
         if (selectedLoc === 'HCM') {
-          food = document.querySelector('input[name="hcmFood"]:checked')?.value || "Ăn gì cũng được";
+          food = document.querySelector('input[name="hcmFood"]:checked')?.value || "Món gì cũng được";
           acts = Array.from(document.querySelectorAll('input[name="hcmAct"]:checked')).map(cb => cb.value);
         } else {
-          food = document.querySelector('input[name="vtFood"]:checked')?.value || "Ăn gì cũng được";
+          food = document.querySelector('input[name="vtFood"]:checked')?.value || "Món gì cũng được";
           acts = Array.from(document.querySelectorAll('input[name="vtAct"]:checked')).map(cb => cb.value);
         }
 
         const locName = selectedLoc === 'HCM' ? 'Hồ Chí Minh 🏙️' : 'Vũng Tàu 🌊';
-        const activitiesText = acts.length > 0 ? acts.join(', ') : 'về nghỉ ngơi sớm';
+        const activitiesText = acts.length > 0 ? acts.join(', ') : 'Tự do trải nghiệm';
 
         valentineQuestion.textContent = 'Hẹn gặp bồ chuyến đi tới nha! 🥰';
         optionsContainer.classList.add('hidden');
@@ -318,7 +311,7 @@
           <p><b>• Hoạt động:</b> ${activitiesText}</p>
         `;
 
-        confetti({ particleCount: 80, spread: 70, origin: { y: 0.6 } });
+        confetti({ particleCount: 90, spread: 80, origin: { y: 0.6 } });
       });
     })();
   </script>
