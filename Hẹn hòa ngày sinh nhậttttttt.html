@@ -44,7 +44,7 @@
     }
     .location-card:hover { transform: translateY(-2px); }
 
-    /* NÚT NO NHẢY LUNG TUNG */
+    /* NÚT HOK NHẢY TRỐN */
     #noButton {
       transition: all 0.15s ease-out;
     }
@@ -53,17 +53,17 @@
 <body class="gradient-background flex items-center justify-center p-4 relative overflow-x-hidden">
   <main class="w-full max-w-md bg-white/90 backdrop-blur-md p-6 rounded-3xl shadow-xl flex flex-col items-center text-center my-auto border border-white relative z-10">
     
-    <!-- GIF MÈO THAY ĐỔI THEO BƯỚC -->
+    <!-- GIF MÈO THAY ĐỔI LINH HOẠT THEO MỖI THAO TÁC -->
     <div class="w-full h-[220px] mb-4 flex items-center justify-center overflow-hidden rounded-2xl bg-pink-50/50">
       <img
         id="imageDisplay"
-        src="https://media0.giphy.com/media/v1.Y2lkPTZjMDliOTUyZHF2dWcwd2lvenZ2OXJ0N25kYTdvN29vajBoMnU0OHcyYWlzODNuZiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/6ok2rFOweFjlvdcaez/giphy.gif"
+        src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExM3Z2eHBiZWpndTF3dW96YWN4dTh2dWh4aTJqNXA1OHI0ZWhuaWh6OSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/cLS1cfAOGM7rtKptNn/giphy.gif"
         alt="Cute Kitten GIF"
         class="h-full w-full object-contain"
       />
     </div>
 
-    <!-- Tiêu đề -->
+    <!-- Tiêu đề chính -->
     <h1 id="valentineQuestion" class="text-2xl font-bold text-[#bd1e59] mb-3 leading-snug">
       Ẻm cóa mún hẹn hò với ảnh hummm? 🥺💖
     </h1>
@@ -73,14 +73,14 @@
       <button
         id="yesButton"
         class="inline-flex items-center justify-center rounded-full font-bold cursor-pointer bg-pink-500 text-white transition-all duration-200 hover:bg-pink-600 shadow-md whitespace-nowrap z-20"
-        style="padding: 12px 24px; font-size: 1.125rem;"
+        style="padding: 12px 24px; font-size: 18px;"
       >
         Mún chứ 💕
       </button>
       <button
         id="noButton"
         class="inline-flex items-center justify-center rounded-full font-medium cursor-pointer bg-gray-400 text-white shadow-md whitespace-nowrap z-20"
-        style="padding: 12px 20px; font-size: 1rem;"
+        style="padding: 12px 20px; font-size: 16px;"
       >
         Hok 🥺
       </button>
@@ -196,22 +196,26 @@
 
   <script>
     let currentSelectedLocation = '';
-    const GIF_TRAVEL = 'https://pusheen.com/wp-content/uploads/2018/08/tumblr_p8xzquv22l1qhy6c9o1_1280.gif';
-    const GIF_HAPPY = 'https://media1.giphy.com/media/v1.Y2lkPTZjMDliOTUyYmg1ZjdjMmp2MDdhbW9yZm9qMzl2cG45MDh5MGhveG93cG8weTBmNSZlcD12MV9naWZzX3NlYXJjaCZjdD1n/IAbrtESCyrqLOMlWdx/giphy.gif';
+
+    // CÁC HÌNH GIF KHÁC NHAU CHO MỖI LỰA CHỌN
+    const GIF_HCM = 'https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExM3Z2eHBiZWpndTF3dW96YWN4dTh2dWh4aTJqNXA1OHI0ZWhuaWh6OSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/cLS1cfAOGM7rtKptNn/giphy.gif'; 
+    const GIF_VT = 'https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExM2FwZjVzcG4xcWJpYTZuNnY0NXpwc3F5Yzg1eWV1OHIyaWJseXV4ZyZlcD12MV9naWZzX3NlYXJjaCZjdD1n/BzyTuYCmvSORqs1ABM/giphy.gif'; // Mèo nằm biển chill
+    const GIF_FINAL = 'https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExbTBwbHZ1OHhhNWx5Z2p3OWsydHkzOXdwZnJ2N2E1Z3Yyb2ZjcjlxNyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/6Is1FJGR0Przj9Wu6i/giphy.gif'; // Mèo mừng sinh nhật
 
     function selectLocation(loc) {
       currentSelectedLocation = loc;
       document.getElementById('locationSelection').classList.add('hidden');
       document.getElementById('detailsContainer').classList.remove('hidden');
-      document.getElementById('imageDisplay').src = GIF_TRAVEL;
 
       const hcmDetails = document.getElementById('hcmDetails');
       const vtDetails = document.getElementById('vtDetails');
 
       if (loc === 'HCM') {
+        document.getElementById('imageDisplay').src = 'https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExNXdwNGlyYmVseXgwMzJ1dHZtZTNseHZ2bzRrd3Z5Y2c0bWdjaGVwcyZlcD12MV9naWZzX3NlYXJjaCZjdD1n/11a9K75oA22Y36/giphy.gif'; // Mèo dạo phố
         hcmDetails.classList.remove('hidden');
         vtDetails.classList.add('hidden');
       } else {
+        document.getElementById('imageDisplay').src = GIF_VT; // Mèo đi biển
         vtDetails.classList.remove('hidden');
         hcmDetails.classList.add('hidden');
       }
@@ -220,6 +224,7 @@
     function backToLocationSelection() {
       document.getElementById('detailsContainer').classList.add('hidden');
       document.getElementById('locationSelection').classList.remove('hidden');
+      document.getElementById('imageDisplay').src = GIF_HCM;
     }
 
     (() => {
@@ -246,32 +251,30 @@
       let clickCount = 0;
       let yesPaddingY = 12;
       let yesPaddingX = 24;
-      let yesFontSize = 1.125; // rem
+      let yesFontSize = 18; // px
 
-      // Hàm làm nút Hok nhảy lung tung & nút YES to dần
       function makeNoButtonRun() {
         clickCount++;
 
-        // Đổi GIF
+        // Đổi GIF mèo buồn theo độ kiên trì
         const gifIdx = Math.min(clickCount - 1, SAD_CAT_GIFS.length - 1);
         imageDisplay.src = SAD_CAT_GIFS[gifIdx];
 
-        // Đổi text nút Hok
+        // Đổi chữ nút Hok
         const msgIdx = Math.min(clickCount, NO_MESSAGES.length - 1);
         noButton.textContent = NO_MESSAGES[msgIdx];
 
-        // TĂNG KÍCH THƯỚC NÚT "MÚN CHỨ" (CẢ KHUNG VÀ CHỮ)
-        yesPaddingY += 8;
-        yesPaddingX += 16;
-        yesFontSize += 0.25;
+        // TĂNG KÍCH THƯỚC CẢ KHUNG VÀ FONT CHỮ CỦA NÚT "MÚN CHỨ"
+        yesPaddingY += 10;
+        yesPaddingX += 18;
+        yesFontSize += 6; // Chữ to rõ rệt luôn
 
         yesButton.style.padding = `${yesPaddingY}px ${yesPaddingX}px`;
-        yesButton.style.fontSize = `${yesFontSize}rem`;
+        yesButton.style.fontSize = `${yesFontSize}px`;
 
-        // NHẢY NÚT HOK SANG VỊ TRÍ KHÁC TRÊN MÀN HÌNH
+        // Nút Hok nhảy vị trí ngẫu nhiên
         noButton.style.position = 'fixed';
-        
-        const padding = 50;
+        const padding = 40;
         const maxX = window.innerWidth - noButton.offsetWidth - padding;
         const maxY = window.innerHeight - noButton.offsetHeight - padding;
 
@@ -282,19 +285,12 @@
         noButton.style.top = `${randomY}px`;
       }
 
-      // Bắt sự kiện rê chuột HOẶC chạm trên mobile để nút Hok tự nhảy trốn
       noButton.addEventListener('mouseover', makeNoButtonRun);
-      noButton.addEventListener('touchstart', (e) => {
-        e.preventDefault();
-        makeNoButtonRun();
-      });
-      noButton.addEventListener('click', (e) => {
-        e.preventDefault();
-        makeNoButtonRun();
-      });
+      noButton.addEventListener('touchstart', (e) => { e.preventDefault(); makeNoButtonRun(); });
+      noButton.addEventListener('click', (e) => { e.preventDefault(); makeNoButtonRun(); });
 
       yesButton.addEventListener('click', () => {
-        imageDisplay.src = GIF_TRAVEL;
+        imageDisplay.src = 'https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExM3Z2eHBiZWpndTF3dW96YWN4dTh2dWh4aTJqNXA1OHI0ZWhuaWh6OSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/cLS1cfAOGM7rtKptNn/giphy.gif';
         valentineQuestion.textContent = 'Chốt đơn! Chọn địa điểm quẩy nè 🥳';
         responseButtons.style.display = 'none';
         locationSelection.classList.remove('hidden');
@@ -322,7 +318,8 @@
         const foodText = foods.length > 0 ? foods.join(', ') : 'Món gì em thích là nhích hết!';
         const activitiesText = acts.length > 0 ? acts.join(', ') : 'Nghỉ ngơi chill chill bên nhau';
 
-        imageDisplay.src = GIF_HAPPY;
+        // GIF MÈO ĂN MỪNG SINH NHẬT VÀ TRÁI TIM
+        imageDisplay.src = GIF_FINAL;
         valentineQuestion.textContent = 'Hẹn gặp công chúa ngày mai nha! 👑💕';
         detailsContainer.classList.add('hidden');
         finalSummary.classList.remove('hidden');
