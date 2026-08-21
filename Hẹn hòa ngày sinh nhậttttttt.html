@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,17 +12,7 @@
       min-height: 100vh;
     }
 
-    .bounce {
-      animation: bounce 2s ease infinite;
-    }
-
-    @keyframes bounce {
-      0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
-      40% { transform: translateY(-20px); }
-      60% { transform: translateY(-10px); }
-    }
-
-    /* CUSTOM CUTE OPTION BUTTONS */
+    /* CUTE OPTION BUTTONS */
     .cute-option input { display: none; }
     .cute-option span {
       display: inline-flex;
@@ -34,7 +24,7 @@
       border: 2px solid #ffb6c1;
       color: #9d174d;
       font-weight: 600;
-      font-size: 0.9rem;
+      font-size: 0.875rem;
       cursor: pointer;
       transition: all 0.2s ease;
       user-select: none;
@@ -43,227 +33,162 @@
       background-color: #f43f5e;
       border-color: #f43f5e;
       color: #ffffff;
-      box-shadow: 0 4px 12px rgba(244, 63, 94, 0.35);
-      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(244, 63, 94, 0.3);
     }
-    .cute-option span::before {
-      content: '🤍';
-      font-size: 0.85rem;
-    }
-    .cute-option input:checked + span::before {
-      content: '💖';
-    }
+    .cute-option span::before { content: '🤍'; font-size: 0.85rem; }
+    .cute-option input:checked + span::before { content: '💖'; }
 
-    /* CARD CHOICE BUTTONS */
     .location-card {
-      transition: all 0.25s ease;
+      transition: all 0.2s ease;
       cursor: pointer;
     }
-    .location-card:hover {
-      transform: translateY(-3px);
+    .location-card:hover { transform: translateY(-2px); }
+
+    /* NÚT NO NHẢY LUNG TUNG */
+    #noButton {
+      transition: all 0.15s ease-out;
     }
   </style>
 </head>
-<body class="gradient-background flex items-center justify-center p-4">
-  <main class="w-full max-w-md bg-white/80 backdrop-blur-md p-6 rounded-3xl shadow-xl flex flex-col items-center text-center my-auto border border-white/60">
+<body class="gradient-background flex items-center justify-center p-4 relative overflow-x-hidden">
+  <main class="w-full max-w-md bg-white/90 backdrop-blur-md p-6 rounded-3xl shadow-xl flex flex-col items-center text-center my-auto border border-white relative z-10">
     
-    <!-- GIF MÈO HELLO TRÁI TIM CUTE BAN ĐẦU -->
-    <img
-      id="imageDisplay"
-      src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExM2Z2eHBiZWpndTF3dW96YWN4dTh2dWh4aTJqNXA1OHI0ZWhuaWh6OSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/cLS1cfAOGM7rtKptNn/giphy.gif"
-      alt="Cute Hello Kitten"
-      class="rounded-2xl h-[240px] w-full object-cover mb-4 shadow-md"
-    />
+    <!-- GIF MÈO THAY ĐỔI THEO BƯỚC -->
+    <div class="w-full h-[220px] mb-4 flex items-center justify-center overflow-hidden rounded-2xl bg-pink-50/50">
+      <img
+        id="imageDisplay"
+        src="https://media0.giphy.com/media/v1.Y2lkPTZjMDliOTUyZHF2dWcwd2lvenZ2OXJ0N25kYTdvN29vajBoMnU0OHcyYWlzODNuZiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/6ok2rFOweFjlvdcaez/giphy.gif"
+        alt="Cute Kitten GIF"
+        class="h-full w-full object-contain"
+      />
+    </div>
 
-    <!-- Tiêu đề chính GenZ Cute -->
-    <h1 id="valentineQuestion" class="text-2xl font-bold italic text-[#bd1e59] my-2 leading-relaxed">
+    <!-- Tiêu đề -->
+    <h1 id="valentineQuestion" class="text-2xl font-bold text-[#bd1e59] mb-3 leading-snug">
       Ẻm cóa mún hẹn hò với ảnh hummm? 🥺💖
     </h1>
 
     <!-- MÀN HÌNH 1: YES / NO -->
-    <div id="responseButtons" class="flex gap-4 pt-3 items-center justify-center min-h-[60px]">
+    <div id="responseButtons" class="flex gap-4 pt-2 items-center justify-center w-full min-h-[80px] relative">
       <button
         id="yesButton"
-        class="bounce inline-flex items-center justify-center whitespace-nowrap rounded-full text-xl font-bold cursor-pointer px-6 py-3 bg-pink-500 text-white transition-all duration-300 ease-in-out hover:bg-pink-600 min-h-12 min-w-[90px] shadow-md"
+        class="inline-flex items-center justify-center rounded-full font-bold cursor-pointer bg-pink-500 text-white transition-all duration-200 hover:bg-pink-600 shadow-md whitespace-nowrap z-20"
+        style="padding: 12px 24px; font-size: 1.125rem;"
       >
         Mún chứ 💕
       </button>
       <button
         id="noButton"
-        class="inline-flex items-center justify-center whitespace-nowrap rounded-full text-xl font-medium cursor-pointer px-6 py-3 bg-gray-400 text-white transition-colors hover:bg-gray-500 h-12 min-w-[90px] shadow-md"
+        class="inline-flex items-center justify-center rounded-full font-medium cursor-pointer bg-gray-400 text-white shadow-md whitespace-nowrap z-20"
+        style="padding: 12px 20px; font-size: 1rem;"
       >
         Hok 🥺
       </button>
     </div>
 
-    <!-- MÀN HÌNH 2: BƯỚC 1 - CHỌN HỒ CHÍ MINH HOẶC VŨNG TÀU -->
-    <div id="locationSelection" class="hidden w-full text-left mt-3 space-y-3">
-      <p class="text-center text-pink-700 font-bold text-lg mb-2">Tụi mình sẽ vi vu ở đâu 2 ngày nè? 📍</p>
+    <!-- MÀN HÌNH 2: CHỌN ĐỊA ĐIỂM -->
+    <div id="locationSelection" class="hidden w-full text-left space-y-3 mt-2">
+      <p class="text-center text-pink-700 font-bold text-base mb-3">Tụi mình sẽ vi vu ở đâu 2 ngày nè? 📍</p>
       
-      <div onclick="selectLocation('HCM')" class="location-card bg-pink-50 p-4 rounded-2xl border-2 border-pink-200 hover:border-pink-400 flex items-center justify-between shadow-sm">
+      <div onclick="selectLocation('HCM')" class="location-card bg-pink-50/80 p-4 rounded-2xl border-2 border-pink-200 hover:border-pink-400 flex items-center justify-between shadow-sm">
         <div>
-          <h2 class="text-xl font-bold text-[#bd1e59]">Hẹn hò ở Hồ Chí Minh 🏙️</h2>
+          <h2 class="text-lg font-bold text-[#bd1e59]">Hẹn hò ở Hồ Chí Minh 🏙️</h2>
           <p class="text-xs text-pink-600 mt-1">2 ngày quẩy banh Sài Gòn, chill hết nấc</p>
         </div>
-        <span class="text-2xl">✨</span>
+        <span class="text-xl">✨</span>
       </div>
 
-      <div onclick="selectLocation('VT')" class="location-card bg-sky-50 p-4 rounded-2xl border-2 border-sky-200 hover:border-sky-400 flex items-center justify-between shadow-sm">
+      <div onclick="selectLocation('VT')" class="location-card bg-sky-50/80 p-4 rounded-2xl border-2 border-sky-200 hover:border-sky-400 flex items-center justify-between shadow-sm">
         <div>
-          <h2 class="text-xl font-bold text-sky-700">Hẹn hò ở Vũng Tàu 🌊</h2>
+          <h2 class="text-lg font-bold text-sky-700">Hẹn hò ở Vũng Tàu 🌊</h2>
           <p class="text-xs text-sky-600 mt-1">2 ngày đổi gió biển, ngắm hoàng hôn & bình minh</p>
         </div>
-        <span class="text-2xl">🌅</span>
+        <span class="text-xl">🌅</span>
       </div>
     </div>
 
-    <!-- MÀN HÌNH 2: BƯỚC 2 - CHI TIẾT TỪNG ĐỊA ĐIỂM (CHO CHỌN NHIỀU) -->
-    <div id="detailsContainer" class="hidden w-full text-left mt-3 space-y-4">
-      
-      <button onclick="backToLocationSelection()" class="text-xs font-semibold text-pink-600 hover:underline flex items-center gap-1 mb-1">
+    <!-- MÀN HÌNH 3: CHỌN OPTION -->
+    <div id="detailsContainer" class="hidden w-full text-left mt-2 space-y-4">
+      <button onclick="backToLocationSelection()" class="text-xs font-semibold text-pink-600 hover:underline flex items-center gap-1">
         ← Chọn lại địa điểm khác
       </button>
 
-      <!-- DETAIL HỒ CHÍ MINH (2 NGÀY) -->
+      <!-- HCM DETAILS -->
       <div id="hcmDetails" class="space-y-4 hidden">
         <div>
-          <label class="block text-base font-bold text-[#bd1e59] mb-1">1. Menu ăn uống 2 ngày (Chọn thoải mái nè) 🍲🥩</label>
-          <span class="text-xs text-gray-500 block mb-2">*Tích chọn nhiều món ẻm thích nhen:</span>
+          <label class="block text-sm font-bold text-[#bd1e59] mb-1">1. Menu ăn uống 2 ngày (Chọn thoải mái nhen) 🍲🥩</label>
+          <span class="text-xs text-gray-500 block mb-2">*Tích chọn nhiều món em thích nè:</span>
           <div class="flex flex-wrap gap-2">
-            <label class="cute-option">
-              <input type="checkbox" name="hcmFood" value="Đồ Hàn Quốc 🇰🇷" checked>
-              <span>Đồ Hàn Quốc 🇰🇷</span>
-            </label>
-            <label class="cute-option">
-              <input type="checkbox" name="hcmFood" value="Đồ Nhật Bản / Sushi 🇯🇵">
-              <span>Đồ Nhật Bản 🇯🇵</span>
-            </label>
-
-            <label class="cute-option">
-              <input type="checkbox" name="hcmFood" value="Lẩu / Nướng xì xèo 🥩">
-              <span>Lẩu / Nướng 🥩</span>
-            </label>
-            <label class="cute-option">
-              <input type="checkbox" name="hcmFood" value="Pasta & Steak sang chảnh 🍷">
-              <span>Steak & Wine 🍷</span>
-            </label>
-            <label class="cute-option">
-              <input type="checkbox" name="hcmFood" value="Bánh ngọt & Bingsu 🍧">
-              <span>Bánh ngọt & Bingsu 🍧</span>
-            </label>
+            <label class="cute-option"><input type="checkbox" name="hcmFood" value="Đồ Hàn Quốc 🇰🇷" checked><span>Đồ Hàn Quốc 🇰🇷</span></label>
+            <label class="cute-option"><input type="checkbox" name="hcmFood" value="Đồ Nhật / Sushi 🇯🇵"><span>Đồ Nhật Bản 🇯🇵</span></label>
+            <label class="cute-option"><input type="checkbox" name="hcmFood" value="Lẩu xì xèo / Nướng 🥩"><span>Lẩu / Nướng 🥩</span></label>
+            <label class="cute-option"><input type="checkbox" name="hcmFood" value="Steak & Pasta sang chảnh 🍷"><span>Steak & Wine 🍷</span></label>
+            <label class="cute-option"><input type="checkbox" name="hcmFood" value="Bánh ngọt & Bingsu 🍧"><span>Bánh ngọt & Bingsu 🍧</span></label>
+            <label class="cute-option"><input type="checkbox" name="hcmFood" value="Đồ Thái cay xè 🇹🇭"><span>Đồ Thái cay xè 🇹🇭</span></label>
+            <label class="cute-option"><input type="checkbox" name="hcmFood" value="Ăn vặt vỉa hè Sài Gòn 🧋"><span>Ăn vặt Sài Gòn 🧋</span></label>
           </div>
         </div>
 
         <div>
-          <label class="block text-base font-bold text-[#bd1e59] mb-1">2. Hoạt động quẩy 2 ngày 1 đêm 🛵🎨</label>
-          <span class="text-xs text-gray-500 block mb-2">*Chọn hết các kèo em muốn đi:</span>
+          <label class="block text-sm font-bold text-[#bd1e59] mb-1">2. Hoạt động quẩy 2 ngày 1 đêm 🛵🎨</label>
+          <span class="text-xs text-gray-500 block mb-2">*Chọn các kèo em muốn tham gia:</span>
           <div class="flex flex-wrap gap-2">
-            <label class="cute-option">
-              <input type="checkbox" name="hcmAct" value="Đi Mall mua sắm dạo phố 🛍️" checked>
-              <span>Đi Mall mua sắm 🛍️</span>
-            </label>
-            <label class="cute-option">
-              <input type="checkbox" name="hcmAct" value="Làm gốm / Nến thơm Birthday 🎨">
-              <span>Workshop gốm/nến 🎨</span>
-            </label>
-            <label class="cute-option">
-              <input type="checkbox" name="hcmAct" value="Xem phim rạp giường nằm 🍿">
-              <span>Xem phim rạp chill 🍿</span>
-            </label>
-
-            <label class="cute-option">
-              <input type="checkbox" name="hcmAct" value="Bar/Pub Rooftop ngắm Sài Gòn 🍸">
-              <span>Rooftop Bar chill 🍸</span>
-            </label>
-            <label class="cute-option">
-              <input type="checkbox" name="hcmAct" value="Dắt đi Quán bí mật bí ẩn 🤫">
-              <span>Quán bí mật 🤫</span>
-            </label>
-            <label class="cute-option">
-              <input type="checkbox" name="hcmAct" value="Homestay xinh quây quần 🏡">
-              <span>Homestay xinh xắn 🏡</span>
-            </label>
+            <label class="cute-option"><input type="checkbox" name="hcmAct" value="Đi Mall mua sắm dạo phố 🛍️" checked><span>Đi Mall mua sắm 🛍️</span></label>
+            <label class="cute-option"><input type="checkbox" name="hcmAct" value="Workshop gốm / Nến thơm 🎨"><span>Workshop gốm/nến 🎨</span></label>
+            <label class="cute-option"><input type="checkbox" name="hcmAct" value="Xem phim rạp giường nằm 🍿"><span>Xem phim rạp chill 🍿</span></label>
+            <label class="cute-option"><input type="checkbox" name="hcmAct" value="Rooftop Bar ngắm Sài Gòn 🍸"><span>Rooftop Bar chill 🍸</span></label>
+            <label class="cute-option"><input type="checkbox" name="hcmAct" value="Tô tượng / Vẽ tranh thư giãn 🖌️"><span>Tô tượng / Vẽ tranh 🖌️</span></label>
+            <label class="cute-option"><input type="checkbox" name="hcmAct" value="Quán Cafe Boardgame 🎲"><span>Cafe Boardgame 🎲</span></label>
+            <label class="cute-option"><input type="checkbox" name="hcmAct" value="Picnic công viên chiều mát 🧺"><span>Picnic công viên 🧺</span></label>
+            <label class="cute-option"><input type="checkbox" name="hcmAct" value="Đi Thảo Cầm Viên / Thủy cung 🦁"><span>Đi Thảo Cầm Viên 🦁</span></label>
+            <label class="cute-option"><input type="checkbox" name="hcmAct" value="Karaoke quẩy tới bến 🎤"><span>Karaoke quẩy 🎤</span></label>
+            <label class="cute-option"><input type="checkbox" name="hcmAct" value="Homestay xinh quây quần 🏡"><span>Homestay xinh xắn 🏡</span></label>
           </div>
         </div>
       </div>
 
-      <!-- DETAIL VŨNG TÀU (2 NGÀY) -->
+      <!-- VT DETAILS -->
       <div id="vtDetails" class="space-y-4 hidden">
         <div>
-          <label class="block text-base font-bold text-sky-700 mb-1">1. Đã ra biển là phải ăn ngập mặt 🦀🍲</label>
-          <span class="text-xs text-gray-500 block mb-2">*Tích chọn các món muốn thử:</span>
+          <label class="block text-sm font-bold text-sky-700 mb-1">1. Ra biển là ăn ngập mặt 🦀🍲</label>
+          <span class="text-xs text-gray-500 block mb-2">*Tích chọn món em muốn ăn:</span>
           <div class="flex flex-wrap gap-2">
-            <label class="cute-option">
-              <input type="checkbox" name="vtFood" value="Hải sản tươi sống xèo xèo 🦀" checked>
-              <span>Hải sản tươi 🦀</span>
-            </label>
-            <label class="cute-option">
-              <input type="checkbox" name="vtFood" value="Lẩu cá đuối nóng hổi 🍲">
-              <span>Lẩu cá đuối 🍲</span>
-            </label>
-            <label class="cute-option">
-              <input type="checkbox" name="vtFood" value="Bánh khọt giòn rụm 🍳">
-              <span>Bánh khọt 🍳</span>
-            </label>
-
-            <label class="cute-option">
-              <input type="checkbox" name="vtFood" value="BBQ nướng bãi biển 🥩">
-              <span>BBQ đêm 🥩</span>
-            </label>
-            <label class="cute-option">
-              <input type="checkbox" name="vtFood" value="Kem bông rán & Ăn vặt bãi Sau 🍦">
-              <span>Kem & Ăn vặt 🍦</span>
-            </label>
+            <label class="cute-option"><input type="checkbox" name="vtFood" value="Hải sản tươi sống 🦀" checked><span>Hải sản tươi 🦀</span></label>
+            <label class="cute-option"><input type="checkbox" name="vtFood" value="Lẩu cá đuối nóng hổi 🍲"><span>Lẩu cá đuối 🍲</span></label>
+            <label class="cute-option"><input type="checkbox" name="vtFood" value="Bánh khọt giòn rụm 🍳"><span>Bánh khọt Gốc Vú Sữa 🍳</span></label>
+            <label class="cute-option"><input type="checkbox" name="vtFood" value="Tiệc BBQ nướng bãi biển 🥩"><span>Tiệc BBQ đêm 🥩</span></label>
+            <label class="cute-option"><input type="checkbox" name="vtFood" value="Kem bông rán & Ăn vặt bãi Sau 🍦"><span>Kem & Ăn vặt bãi biển 🍦</span></label>
+            <label class="cute-option"><input type="checkbox" name="vtFood" value="Bánh bông lan trứng muối 🧁"><span>Bánh bông lan trứng muối 🧁</span></label>
           </div>
         </div>
 
         <div>
-          <label class="block text-base font-bold text-sky-700 mb-1">2. Lịch trình vi vu biển 2 ngày 🌅📸</label>
-          <span class="text-xs text-gray-500 block mb-2">*Chọn hết các trải nghiệm nè:</span>
+          <label class="block text-sm font-bold text-sky-700 mb-1">2. Lịch trình vi vu biển 2 ngày 🌅📸</label>
+          <span class="text-xs text-gray-500 block mb-2">*Chọn các trải nghiệm muốn đi:</span>
           <div class="flex flex-wrap gap-2">
-            <label class="cute-option">
-              <input type="checkbox" name="vtAct" value="Ngắm hoàng hôn Bãi Trước 🌅" checked>
-              <span>Ngắm hoàng hôn 🌅</span>
-            </label>
-            <label class="cute-option">
-              <input type="checkbox" name="vtAct" value="Săn bình minh Bãi Sau 🌄">
-              <span>Săn bình minh 🌄</span>
-            </label>
-            <label class="cute-option">
-              <input type="checkbox" name="vtAct" value="Check-in Mũi Nghinh Phong & Hải Đăng 📸">
-              <span>Check-in sống ảo 📸</span>
-            </label>
-
-            <label class="cute-option">
-              <input type="checkbox" name="vtAct" value="Lái xe vi vu đèo Bãi Dâu đêm 🛵">
-              <span>Dạo đường biển đêm 🛵</span>
-            </label>
-            <label class="cute-option">
-              <input type="checkbox" name="vtAct" value="Cafe ngắm sóng biển ngắm hoàng hôn ☕">
-              <span>Cafe view biển ☕</span>
-            </label>
-            <label class="cute-option">
-              <input type="checkbox" name="vtAct" value="Thuê Homestay/Hotel view biển chill 🏡">
-              <span>Homestay view biển 🏡</span>
-            </label>
+            <label class="cute-option"><input type="checkbox" name="vtAct" value="Ngắm hoàng hôn Bãi Trước 🌅" checked><span>Ngắm hoàng hôn 🌅</span></label>
+            <label class="cute-option"><input type="checkbox" name="vtAct" value="Săn bình minh Bãi Sau 🌄"><span>Săn bình minh 🌄</span></label>
+            <label class="cute-option"><input type="checkbox" name="vtAct" value="Check-in Mũi Nghinh Phong & Hải Đăng 📸"><span>Check-in Mũi Nghinh Phong 📸</span></label>
+            <label class="cute-option"><input type="checkbox" name="vtAct" value="Lái xe dạo đường biển Bãi Dâu đêm 🛵"><span>Dạo đường biển đêm 🛵</span></label>
+            <label class="cute-option"><input type="checkbox" name="vtAct" value="Cafe ngắm sóng biển chiều ☕"><span>Cafe view biển ☕</span></label>
+            <label class="cute-option"><input type="checkbox" name="vtAct" value="Dạo chợ đêm hải sản 🌙"><span>Chợ đêm hải sản 🌙</span></label>
+            <label class="cute-option"><input type="checkbox" name="vtAct" value="Tắm biển & Đón sóng 🏖️"><span>Tắm biển chill 🏖️</span></label>
+            <label class="cute-option"><input type="checkbox" name="vtAct" value="Hotel/Homestay view biển 🏡"><span>Homestay view biển 🏡</span></label>
           </div>
         </div>
       </div>
 
-      <!-- Nút Chốt đơn -->
       <button
         id="submitOptionsBtn"
-        class="w-full mt-2 py-3 bg-[#bd1e59] text-white font-bold text-lg rounded-full shadow-lg hover:bg-[#a0184a] transition-all cursor-pointer transform hover:scale-[1.02] active:scale-95"
+        class="w-full mt-2 py-3 bg-[#bd1e59] text-white font-bold text-base rounded-full shadow-lg hover:bg-[#a0184a] transition-all cursor-pointer transform active:scale-95"
       >
         Chốt đơn luôn! 💕
       </button>
     </div>
 
-    <!-- MÀN HÌNH TỔNG HỢP / CẢM ƠN + LỜI CHÚC GENZ -->
+    <!-- MÀN HÌNH TỔNG HỢP -->
     <div id="finalSummary" class="hidden text-center mt-2 w-full space-y-3">
-      <div id="summaryContent" class="bg-pink-50/90 p-4 rounded-2xl text-gray-800 leading-relaxed text-left border border-pink-200 shadow-inner text-sm space-y-2">
-        <!-- Nội dung tổng hợp + Lời chúc -->
-      </div>
+      <div id="summaryContent" class="bg-pink-50/90 p-4 rounded-2xl text-gray-800 leading-relaxed text-left border border-pink-200 shadow-inner text-sm space-y-2"></div>
       <p class="text-xs text-pink-600 font-semibold italic">📸 Chụp màn hình này gửi lại cho ảnh liền nhen!</p>
     </div>
 
@@ -271,11 +196,14 @@
 
   <script>
     let currentSelectedLocation = '';
+    const GIF_TRAVEL = 'https://pusheen.com/wp-content/uploads/2018/08/tumblr_p8xzquv22l1qhy6c9o1_1280.gif';
+    const GIF_HAPPY = 'https://media1.giphy.com/media/v1.Y2lkPTZjMDliOTUyYmg1ZjdjMmp2MDdhbW9yZm9qMzl2cG45MDh5MGhveG93cG8weTBmNSZlcD12MV9naWZzX3NlYXJjaCZjdD1n/IAbrtESCyrqLOMlWdx/giphy.gif';
 
     function selectLocation(loc) {
       currentSelectedLocation = loc;
       document.getElementById('locationSelection').classList.add('hidden');
       document.getElementById('detailsContainer').classList.remove('hidden');
+      document.getElementById('imageDisplay').src = GIF_TRAVEL;
 
       const hcmDetails = document.getElementById('hcmDetails');
       const vtDetails = document.getElementById('vtDetails');
@@ -306,65 +234,75 @@
       const finalSummary = document.getElementById('finalSummary');
       const summaryContent = document.getElementById('summaryContent');
 
-      const GROWTH_PER_CLICK = 30;
-      const FONT_GROWTH_PER_CLICK = 15;
-      const MAX_NO_CLICKS = 5;
-
-      // GIF MÈO THEO TỪNG CẤP ĐỘ
-      const IMAGE_PATHS = [
-        'https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExM3Z2eHBiZWpndTF3dW96YWN4dTh2dWh4aTJqNXA1OHI0ZWhuaWh6OSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/cLS1cfAOGM7rtKptNn/giphy.gif', // Hello tim
-        'https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExNmNnaXk2aDFkdnA3bmdvNWdpYmExZnRzdmxwaHB1ZmxocjhicG54eiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/ISOckXUvpE92w/giphy.gif', // Mèo buồn
-        'https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExMnlvdXNmbWRpMDc1am9rdXhhYjZlbnlsZG96bGFubXlsb24xbzh5ZCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/ROF8OQvDmxytW/giphy.gif', // Mèo xin xỏ
-        'https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHM3ZnpoYjJ0OWw0YXd2OHFxeTZidnpra2lud3d1aWF5OG9vOXZpbyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/d22UJ47yvGDXdbq0/giphy.gif', // Mèo khóc
-        'https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExN3RzbHNtMHlhNGI1OGZ0bGl6OHI4NHJqczd2NzBhMzA0ZmFocWZ6ayZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/TW8Ma1S9553CI/giphy.gif', // Mèo suy sụp
-        'https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExYnJ2bzRqZTVxMmY0cTlwa3psM2Y4cGF3MXNveGFxZzA5MzJwYXNnOCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/6Is1FJGR0Przj9Wu6i/giphy.gif'  // Happy
+      const SAD_CAT_GIFS = [
+        'https://media.giphy.com/media/ISOckXUvpE92w/giphy.gif',
+        'https://media.giphy.com/media/ROF8OQvDmxytW/giphy.gif',
+        'https://media.giphy.com/media/d22UJ47yvGDXdbq0/giphy.gif',
+        'https://media.giphy.com/media/TW8Ma1S9553CI/giphy.gif'
       ];
 
-      const NO_BUTTON_MESSAGES = [
-        'Hok 🥺',
-        'Ẻm chắc chưa đó? 😢',
-        'Năn nỉ em í 🙏',
-        'Đừng làm vậy mà... 💔',
-        'Tim ảnh vỡ vụn gùi 😭',
-        'Khóc trôi nhà luôn đó...'
-      ];
+      const NO_MESSAGES = ['Hok 🥺', 'Ẻm chắc chưa? 😢', 'Năn nỉ em í 🙏', 'Đừng mà... 💔', 'Bấm nhầm đúng hông 😭'];
 
-      let noClickCount = 0;
-      let buttonHeight = 48;
-      let buttonWidth = 90;
-      let fontSize = 20;
+      let clickCount = 0;
+      let yesPaddingY = 12;
+      let yesPaddingX = 24;
+      let yesFontSize = 1.125; // rem
 
-      noButton.addEventListener('click', () => {
-        if (noClickCount >= MAX_NO_CLICKS) return;
+      // Hàm làm nút Hok nhảy lung tung & nút YES to dần
+      function makeNoButtonRun() {
+        clickCount++;
 
-        noClickCount++;
-        imageDisplay.src = IMAGE_PATHS[noClickCount];
+        // Đổi GIF
+        const gifIdx = Math.min(clickCount - 1, SAD_CAT_GIFS.length - 1);
+        imageDisplay.src = SAD_CAT_GIFS[gifIdx];
 
-        buttonHeight += GROWTH_PER_CLICK;
-        buttonWidth += GROWTH_PER_CLICK;
-        fontSize += FONT_GROWTH_PER_CLICK;
+        // Đổi text nút Hok
+        const msgIdx = Math.min(clickCount, NO_MESSAGES.length - 1);
+        noButton.textContent = NO_MESSAGES[msgIdx];
 
-        yesButton.style.height = `${buttonHeight}px`;
-        yesButton.style.width = `${buttonWidth}px`;
-        yesButton.style.fontSize = `${fontSize}px`;
+        // TĂNG KÍCH THƯỚC NÚT "MÚN CHỨ" (CẢ KHUNG VÀ CHỮ)
+        yesPaddingY += 8;
+        yesPaddingX += 16;
+        yesFontSize += 0.25;
 
-        noButton.textContent = NO_BUTTON_MESSAGES[noClickCount];
+        yesButton.style.padding = `${yesPaddingY}px ${yesPaddingX}px`;
+        yesButton.style.fontSize = `${yesFontSize}rem`;
+
+        // NHẢY NÚT HOK SANG VỊ TRÍ KHÁC TRÊN MÀN HÌNH
+        noButton.style.position = 'fixed';
+        
+        const padding = 50;
+        const maxX = window.innerWidth - noButton.offsetWidth - padding;
+        const maxY = window.innerHeight - noButton.offsetHeight - padding;
+
+        const randomX = Math.max(padding, Math.floor(Math.random() * maxX));
+        const randomY = Math.max(padding, Math.floor(Math.random() * maxY));
+
+        noButton.style.left = `${randomX}px`;
+        noButton.style.top = `${randomY}px`;
+      }
+
+      // Bắt sự kiện rê chuột HOẶC chạm trên mobile để nút Hok tự nhảy trốn
+      noButton.addEventListener('mouseover', makeNoButtonRun);
+      noButton.addEventListener('touchstart', (e) => {
+        e.preventDefault();
+        makeNoButtonRun();
+      });
+      noButton.addEventListener('click', (e) => {
+        e.preventDefault();
+        makeNoButtonRun();
       });
 
       yesButton.addEventListener('click', () => {
-        imageDisplay.src = IMAGE_PATHS[IMAGE_PATHS.length - 1];
+        imageDisplay.src = GIF_TRAVEL;
         valentineQuestion.textContent = 'Chốt đơn! Chọn địa điểm quẩy nè 🥳';
         responseButtons.style.display = 'none';
-
         locationSelection.classList.remove('hidden');
 
-        // Pháo hoa
         const heart = confetti.shapeFromPath({
           path: 'M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z',
         });
-        const defaults = { spread: 360, ticks: 100, gravity: 0, decay: 0.94, startVelocity: 20, shapes: [heart], colors: ['#ff69b4', '#ff1493', '#ff6b81', '#e84393'] };
-        confetti({ ...defaults, particleCount: 50, scalar: 2 });
-        confetti({ ...defaults, particleCount: 25, scalar: 3 });
+        confetti({ spread: 360, ticks: 100, gravity: 0, decay: 0.94, startVelocity: 20, shapes: [heart], colors: ['#ff69b4', '#ff1493', '#ff6b81'], particleCount: 50 });
       });
 
       submitOptionsBtn.addEventListener('click', () => {
@@ -384,13 +322,14 @@
         const foodText = foods.length > 0 ? foods.join(', ') : 'Món gì em thích là nhích hết!';
         const activitiesText = acts.length > 0 ? acts.join(', ') : 'Nghỉ ngơi chill chill bên nhau';
 
+        imageDisplay.src = GIF_HAPPY;
         valentineQuestion.textContent = 'Hẹn gặp công chúa ngày mai nha! 👑💕';
         detailsContainer.classList.add('hidden');
         finalSummary.classList.remove('hidden');
 
         summaryContent.innerHTML = `
           <div class="border-b border-pink-200 pb-2 mb-2">
-            <p class="font-bold text-[#bd1e59] text-base">📌 KẾ HOẠCH HẸN HÒ 2 NGÀY:</p>
+            <p class="font-bold text-[#bd1e59]">📌 KẾ HOẠCH HẸN HÒ 2 NGÀY:</p>
             <p><b>• Giờ xuất phát:</b> <span class="text-pink-600 font-bold">8:00 AM Sáng mai ⏰</span></p>
             <p><b>• Địa điểm:</b> ${locName}</p>
             <p><b>• Món ăn đã chọn:</b> ${foodText}</p>
@@ -403,7 +342,7 @@
           </div>
         `;
 
-        confetti({ particleCount: 100, spread: 80, origin: { y: 0.6 } });
+        confetti({ particleCount: 120, spread: 80, origin: { y: 0.6 } });
       });
     })();
   </script>
