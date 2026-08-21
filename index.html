@@ -30,164 +30,163 @@
       }
     }
   </style>
+  <!-- Preload images so transitions feel instant -->
+  <link rel="preload" as="image" href="./images/image1.gif">
+  <link rel="preload" as="image" href="./images/image2.gif">
+  <link rel="preload" as="image" href="./images/image3.gif">
+  <link rel="preload" as="image" href="./images/image4.gif">
+  <link rel="preload" as="image" href="./images/image5.gif">
+  <link rel="preload" as="image" href="./images/image6.gif">
+  <link rel="preload" as="image" href="./images/image7.gif">
 </head>
-<body class="gradient-background flex items-center justify-center p-4">
-  <main class="w-full max-w-md bg-white/80 backdrop-blur-sm p-6 rounded-2xl shadow-xl flex flex-col items-center text-center my-auto">
-    
-    <!-- Hình ảnh đại diện -->
-    <img
-      id="imageDisplay"
-      src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHp1eXU1ZnRkbmJ1eXp5bWVmNWt6bWFsbXpjdW82cXBqNmd5Zmc0NSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/cLS1cf3xm38wmRASY2/giphy.gif"
-      alt="Cute kitten with flowers"
-      class="rounded-xl h-[250px] object-cover mb-4 shadow-sm"
-    />
+<body class="gradient-background">
+  <main class="flex items-center justify-center min-h-screen p-4">
+    <section class="flex flex-col items-center p-4 max-w-md w-full">
+      <img
+        id="imageDisplay"
+        src="./images/image1.gif"
+        alt="Cute kitten with flowers"
+        class="rounded-md h-[300px] object-cover"
+      />
+      <h1 id="valentineQuestion" class="text-4xl font-bold italic text-[#bd1e59] my-4 text-center">
+        Will you be my Valentine?
+      </h1>
 
-    <!-- Câu hỏi chính -->
-    <h1 id="valentineQuestion" class="text-3xl font-bold italic text-[#bd1e59] my-2">
-      Will you be my Valentine?
-    </h1>
-
-    <!-- NÚT BẤM YES/NO MÀN HÌNH 1 -->
-    <div id="responseButtons" class="flex gap-4 pt-4 items-center justify-center min-h-[60px]">
-      <button
-        id="yesButton"
-        class="bounce inline-flex items-center justify-center whitespace-nowrap rounded-lg text-xl font-medium cursor-pointer px-4 py-2 bg-green-500 text-white transition-all duration-300 ease-in-out hover:bg-green-400 min-h-12 min-w-[75px] shadow-md"
-      >
-        Yes
-      </button>
-      <button
-        id="noButton"
-        class="inline-flex items-center justify-center whitespace-nowrap rounded-lg text-xl font-medium cursor-pointer px-4 py-2 bg-red-500 text-white transition-colors hover:bg-red-700 h-12 min-w-[75px] shadow-md"
-      >
-        No
-      </button>
-    </div>
-
-    <!-- BẢNG TÙY CHỌN LỊCH HẸN HÒ (Hiện sau khi bấm YES) -->
-    <div id="optionsContainer" class="hidden w-full text-left mt-4 space-y-4">
-      
-      <!-- BƯỚC 1: CHỌN ĐỊA ĐIỂM -->
-      <div class="bg-pink-50/80 p-4 rounded-xl border border-pink-200 shadow-sm">
-        <label class="block text-lg font-bold text-[#bd1e59] mb-2">Tụi mình sẽ đi đâu nè? 📍</label>
-        <div class="flex gap-4 text-gray-700">
-          <label class="flex items-center gap-2 cursor-pointer font-medium hover:text-pink-600 transition-colors">
-            <input type="radio" name="location" value="HCM" class="accent-pink-500 w-4 h-4" onchange="toggleLocationOptions('HCM')" checked>
-            <span>Hồ Chí Minh 🏙️</span>
-          </label>
-          <label class="flex items-center gap-2 cursor-pointer font-medium hover:text-pink-600 transition-colors">
-            <input type="radio" name="location" value="VT" class="accent-pink-500 w-4 h-4" onchange="toggleLocationOptions('VT')">
-            <span>Vũng Tàu 🌊</span>
-          </label>
-        </div>
+      <!-- MÀN HÌNH 1: NÚT YES / NO GỐC -->
+      <div id="responseButtons" class="flex gap-4 pt-5 items-center">
+        <button
+          id="yesButton"
+          class="bounce inline-flex items-center justify-center whitespace-nowrap rounded-md text-xl font-medium cursor-pointer px-4 py-2 bg-green-500 text-white transition-all duration-300 ease-in-out hover:bg-green-400 min-h-12 min-w-[75px]"
+        >
+          Yes
+        </button>
+        <button
+          id="noButton"
+          class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-xl font-medium cursor-pointer px-4 py-2 bg-red-500 text-white transition-colors hover:bg-red-700 h-12 min-w-[75px]"
+        >
+          No
+        </button>
       </div>
 
-      <!-- BẢNG 1: TÙY CHỌN HỒ CHÍ MINH -->
-      <div id="hcmOptions" class="space-y-4">
-        <!-- Mục 1: Ăn uống HCM -->
-        <div class="bg-pink-50/80 p-4 rounded-xl border border-pink-200 shadow-sm">
-          <label class="block text-md font-bold text-[#bd1e59] mb-2">1. Ăn món gì ở Sài Gòn đây? 🍲</label>
-          <div class="space-y-2 text-gray-700">
-            <label class="flex items-center gap-2 cursor-pointer hover:text-pink-600">
-              <input type="radio" name="hcmFood" value="Món Hàn Quốc 🇰🇷" class="accent-pink-500 w-4 h-4" checked>
-              <span>Món Hàn Quốc 🇰🇷</span>
+      <!-- MÀN HÌNH 2: BẢNG LỰA CHỌN (Bấm YES mới hiện) -->
+      <div id="optionsContainer" class="hidden w-full text-left mt-4 space-y-4">
+        
+        <!-- Chọn Địa điểm -->
+        <div>
+          <label class="block text-xl font-bold italic text-[#bd1e59] mb-2">Tụi mình sẽ đi đâu nè? 📍</label>
+          <div class="flex gap-6 text-gray-800 text-lg">
+            <label class="flex items-center gap-2 cursor-pointer font-medium">
+              <input type="radio" name="location" value="HCM" class="accent-[#bd1e59] w-5 h-5" onchange="toggleLocationOptions('HCM')" checked>
+              <span>Hồ Chí Minh 🏙️</span>
             </label>
-            <label class="flex items-center gap-2 cursor-pointer hover:text-pink-600">
-              <input type="radio" name="hcmFood" value="Món Nhật Bản 🇯🇵" class="accent-pink-500 w-4 h-4">
-              <span>Món Nhật Bản 🇯🇵</span>
-            </label>
-            <label class="flex items-center gap-2 cursor-pointer hover:text-pink-600">
-              <input type="radio" name="hcmFood" value="Món Việt Nam 🇻🇳" class="accent-pink-500 w-4 h-4">
-              <span>Món Việt Nam 🇻🇳</span>
+            <label class="flex items-center gap-2 cursor-pointer font-medium">
+              <input type="radio" name="location" value="VT" class="accent-[#bd1e59] w-5 h-5" onchange="toggleLocationOptions('VT')">
+              <span>Vũng Tàu 🌊</span>
             </label>
           </div>
         </div>
 
-        <!-- Mục 2: Hoạt động HCM -->
-        <div class="bg-pink-50/80 p-4 rounded-xl border border-pink-200 shadow-sm">
-          <label class="block text-md font-bold text-[#bd1e59] mb-2">2. Ăn xong mình đi đâu tiếp? 🛵</label>
-          <div class="space-y-2 text-gray-700">
-            <label class="flex items-center gap-2 cursor-pointer hover:text-pink-600">
-              <input type="checkbox" name="hcmAct" value="Đi mall dạo phố 🛍️" class="accent-pink-500 w-4 h-4 rounded" checked>
-              <span>Đi mall dạo phố 🛍️</span>
-            </label>
-            <label class="flex items-center gap-2 cursor-pointer hover:text-pink-600">
-              <input type="checkbox" name="hcmAct" value="Đi quán bí mật 🤫" class="accent-pink-500 w-4 h-4 rounded">
-              <span>Đi quán bí mật 🤫</span>
-            </label>
-            <label class="flex items-center gap-2 cursor-pointer hover:text-pink-600">
-              <input type="checkbox" name="hcmAct" value="Thuê homestay chill chill 🏡" class="accent-pink-500 w-4 h-4 rounded">
-              <span>Thuê homestay chill chill 🏡</span>
-            </label>
+        <!-- Option Hồ Chí Minh -->
+        <div id="hcmOptions" class="space-y-4">
+          <div>
+            <label class="block text-lg font-bold text-[#bd1e59] mb-1">1. Ăn món gì ở Sài Gòn đây? 🍲</label>
+            <div class="space-y-2 text-gray-700 text-base">
+              <label class="flex items-center gap-2 cursor-pointer">
+                <input type="radio" name="hcmFood" value="Món Hàn Quốc 🇰🇷" class="accent-[#bd1e59] w-4 h-4" checked>
+                <span>Món Hàn Quốc 🇰🇷</span>
+              </label>
+              <label class="flex items-center gap-2 cursor-pointer">
+                <input type="radio" name="hcmFood" value="Món Nhật Bản 🇯🇵" class="accent-[#bd1e59] w-4 h-4">
+                <span>Món Nhật Bản 🇯🇵</span>
+              </label>
+              <label class="flex items-center gap-2 cursor-pointer">
+                <input type="radio" name="hcmFood" value="Món Việt Nam 🇻🇳" class="accent-[#bd1e59] w-4 h-4">
+                <span>Món Việt Nam 🇻🇳</span>
+              </label>
+            </div>
+          </div>
+
+          <div>
+            <label class="block text-lg font-bold text-[#bd1e59] mb-1">2. Ăn xong mình đi đâu tiếp? 🛵</label>
+            <div class="space-y-2 text-gray-700 text-base">
+              <label class="flex items-center gap-2 cursor-pointer">
+                <input type="checkbox" name="hcmAct" value="Đi mall dạo phố 🛍️" class="accent-[#bd1e59] w-4 h-4 rounded" checked>
+                <span>Đi mall dạo phố 🛍️</span>
+              </label>
+              <label class="flex items-center gap-2 cursor-pointer">
+                <input type="checkbox" name="hcmAct" value="Đi quán bí mật 🤫" class="accent-[#bd1e59] w-4 h-4 rounded">
+                <span>Đi quán bí mật 🤫</span>
+              </label>
+              <label class="flex items-center gap-2 cursor-pointer">
+                <input type="checkbox" name="hcmAct" value="Thuê homestay chill chill 🏡" class="accent-[#bd1e59] w-4 h-4 rounded">
+                <span>Thuê homestay chill chill 🏡</span>
+              </label>
+            </div>
           </div>
         </div>
-      </div>
 
-      <!-- BẢNG 2: TÙY CHỌN VŨNG TÀU (Ẩn mặc định) -->
-      <div id="vtOptions" class="space-y-4 hidden">
-        <!-- Mục 1: Ăn uống VT -->
-        <div class="bg-pink-50/80 p-4 rounded-xl border border-pink-200 shadow-sm">
-          <label class="block text-md font-bold text-[#bd1e59] mb-2">1. Đi biển thì ăn gì nhỉ? 🦀</label>
-          <div class="space-y-2 text-gray-700">
-            <label class="flex items-center gap-2 cursor-pointer hover:text-pink-600">
-              <input type="radio" name="vtFood" value="Hải sản xèo xèo 🦀" class="accent-pink-500 w-4 h-4" checked>
-              <span>Hải sản xèo xèo 🦀</span>
-            </label>
-            <label class="flex items-center gap-2 cursor-pointer hover:text-pink-600">
-              <input type="radio" name="vtFood" value="Lẩu cá đuối nóng hổi 🍲" class="accent-pink-500 w-4 h-4">
-              <span>Lẩu cá đuối nóng hổi 🍲</span>
-            </label>
-            <label class="flex items-center gap-2 cursor-pointer hover:text-pink-600">
-              <input type="radio" name="vtFood" value="Bánh khọt góc phố 🍳" class="accent-pink-500 w-4 h-4">
-              <span>Bánh khọt góc phố 🍳</span>
-            </label>
+        <!-- Option Vũng Tàu -->
+        <div id="vtOptions" class="space-y-4 hidden">
+          <div>
+            <label class="block text-lg font-bold text-[#bd1e59] mb-1">1. Đi biển thì ăn gì nhỉ? 🦀</label>
+            <div class="space-y-2 text-gray-700 text-base">
+              <label class="flex items-center gap-2 cursor-pointer">
+                <input type="radio" name="vtFood" value="Hải sản xèo xèo 🦀" class="accent-[#bd1e59] w-4 h-4" checked>
+                <span>Hải sản xèo xèo 🦀</span>
+              </label>
+              <label class="flex items-center gap-2 cursor-pointer">
+                <input type="radio" name="vtFood" value="Lẩu cá đuối nóng hổi 🍲" class="accent-[#bd1e59] w-4 h-4">
+                <span>Lẩu cá đuối nóng hổi 🍲</span>
+              </label>
+              <label class="flex items-center gap-2 cursor-pointer">
+                <input type="radio" name="vtFood" value="Bánh khọt góc phố 🍳" class="accent-[#bd1e59] w-4 h-4">
+                <span>Bánh khọt góc phố 🍳</span>
+              </label>
+            </div>
+          </div>
+
+          <div>
+            <label class="block text-lg font-bold text-[#bd1e59] mb-1">2. Chơi gì ở Vũng Tàu ta? 🌅</label>
+            <div class="space-y-2 text-gray-700 text-base">
+              <label class="flex items-center gap-2 cursor-pointer">
+                <input type="checkbox" name="vtAct" value="Ngắm hoàng hôn bờ biển 🌅" class="accent-[#bd1e59] w-4 h-4 rounded" checked>
+                <span>Ngắm hoàng hôn bờ biển 🌅</span>
+              </label>
+              <label class="flex items-center gap-2 cursor-pointer">
+                <input type="checkbox" name="vtAct" value="Check-in Hải Đăng/Mũi Nghinh Phong 📸" class="accent-[#bd1e59] w-4 h-4 rounded">
+                <span>Check-in Hải Đăng / Mũi Nghinh Phong 📸</span>
+              </label>
+              <label class="flex items-center gap-2 cursor-pointer">
+                <input type="checkbox" name="vtAct" value="Thuê homestay view biển chill 🏡" class="accent-[#bd1e59] w-4 h-4 rounded">
+                <span>Thuê homestay view biển chill 🏡</span>
+              </label>
+            </div>
           </div>
         </div>
 
-        <!-- Mục 2: Hoạt động VT -->
-        <div class="bg-pink-50/80 p-4 rounded-xl border border-pink-200 shadow-sm">
-          <label class="block text-md font-bold text-[#bd1e59] mb-2">2. Chơi gì ở Vũng Tàu ta? 🌅</label>
-          <div class="space-y-2 text-gray-700">
-            <label class="flex items-center gap-2 cursor-pointer hover:text-pink-600">
-              <input type="checkbox" name="vtAct" value="Ngắm hoàng hôn bờ biển 🌅" class="accent-pink-500 w-4 h-4 rounded" checked>
-              <span>Ngắm hoàng hôn bờ biển 🌅</span>
-            </label>
-            <label class="flex items-center gap-2 cursor-pointer hover:text-pink-600">
-              <input type="checkbox" name="vtAct" value="Check-in Hải Đăng/Mũi Nghinh Phong 📸" class="accent-pink-500 w-4 h-4 rounded">
-              <span>Check-in Hải Đăng / Mũi Nghinh Phong 📸</span>
-            </label>
-            <label class="flex items-center gap-2 cursor-pointer hover:text-pink-600">
-              <input type="checkbox" name="vtAct" value="Thuê homestay view biển chill 🏡" class="accent-pink-500 w-4 h-4 rounded">
-              <span>Thuê homestay view biển chill 🏡</span>
-            </label>
-          </div>
+        <button
+          id="submitOptionsBtn"
+          class="w-full mt-4 py-3 bg-[#bd1e59] text-white font-bold text-lg rounded-md shadow-md hover:bg-[#a0184a] transition-all cursor-pointer"
+        >
+          Chốt đơn luôn! 💕
+        </button>
+      </div>
+
+      <!-- MÀN HÌNH 3: XÁC NHẬN / TỔNG HỢP -->
+      <div id="finalSummary" class="hidden text-center mt-4 w-full space-y-2">
+        <div id="summaryContent" class="text-left text-gray-800 text-lg leading-relaxed p-4 rounded-md border border-[#bd1e59]/30 bg-white/50">
+          <!-- JS sẽ chèn kết quả vào đây -->
         </div>
+        <p class="text-sm text-gray-500 italic pt-2">📸 Chụp màn hình này gửi lại cho tui nhen!</p>
       </div>
 
-      <!-- Nút Chốt đơn -->
-      <button
-        id="submitOptionsBtn"
-        class="w-full py-3 bg-[#bd1e59] text-white font-bold text-lg rounded-xl shadow-lg hover:bg-[#a0184a] transition-all transform hover:scale-[1.02] active:scale-95"
-      >
-        Chốt đơn luôn! 💕
-      </button>
-    </div>
-
-    <!-- MÀN HÌNH TỔNG HỢP / CẢM ƠN (Ẩn ban đầu) -->
-    <div id="finalSummary" class="hidden text-center mt-2 space-y-3 w-full">
-      <div id="summaryContent" class="bg-pink-50 p-4 rounded-xl text-gray-700 leading-relaxed text-left border border-pink-200 shadow-inner">
-        <!-- Nội dung sẽ được tổng hợp bằng JavaScript -->
-      </div>
-      <p class="text-xs text-gray-400 italic">📸 Chụp màn hình này gửi lại cho tui nhen!</p>
-    </div>
-
+    </section>
   </main>
 
   <script>
-    // Hàm chuyển đổi bảng giữa HCM và Vũng Tàu
     function toggleLocationOptions(location) {
       const hcmOptions = document.getElementById('hcmOptions');
       const vtOptions = document.getElementById('vtOptions');
-      
       if (location === 'HCM') {
         hcmOptions.classList.remove('hidden');
         vtOptions.classList.add('hidden');
@@ -209,14 +208,19 @@
       const finalSummary = document.getElementById('finalSummary');
       const summaryContent = document.getElementById('summaryContent');
 
-      // Các ảnh GIF trực tuyến đảm bảo hiển thị 100%
+      // Configuration
+      const GROWTH_PER_CLICK = 35;
+      const FONT_GROWTH_PER_CLICK = 25;
+      const MAX_NO_CLICKS = 5;
+
       const IMAGE_PATHS = [
-        'https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHp1eXU1ZnRkbmJ1eXp5bWVmNWt6bWFsbXpjdW82cXBqNmd5Zmc0NSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/cLS1cf3xm38wmRASY2/giphy.gif',
-        'https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHp2ZXJhOHhpeGsyeXZoc2U0OGNyd3lqenozdXpxa3BtbGttY3ZkayZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/L952342pdG4mg/giphy.gif',
-        'https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExNndic2pxcGZ1cGZxeTlhOTIxcGFpMnBhYmVudHFpNWJxbzBvdDByZCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/7SF1r803215ptx254Y/giphy.gif',
-        'https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExMnptZnk4Mzg4OTlhZjM3dGRqZmIyeXBsd2t3ODlhczd2aXU3bzE0NSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/OPU6wzx8JrHna/giphy.gif',
-        'https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExNnk1eGVubHdqazAyc2NvZmx2YXNxdzUxdGVrdWFtNW55c3c0dGZneSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/d22Nyp394QC33076/giphy.gif',
-        'https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExNGQzbHN2YmxsbzB1eWlreGN5c3R4eDVxcGFxcnYxN2Eyb2M1NHBhMiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/MDJ9IbxxvDUQM/giphy.gif'
+        './images/image1.gif',
+        './images/image2.gif',
+        './images/image3.gif',
+        './images/image4.gif',
+        './images/image5.gif',
+        './images/image6.gif',
+        './images/image7.gif',
       ];
 
       const NO_BUTTON_MESSAGES = [
@@ -228,23 +232,32 @@
         "I'm gonna cry...",
       ];
 
-      const GROWTH_PER_CLICK = 35;
-      const FONT_GROWTH_PER_CLICK = 25;
-      const MAX_NO_CLICKS = 5;
+      const ALT_TEXTS = [
+        'Cute kitten with flowers',
+        'Sad kitten looking up',
+        'Kitten begging',
+        'Heartbroken kitten',
+        'Crying kitten',
+        'Devastated kitten',
+        'Happy kitten celebrating',
+      ];
 
+      // State
       let noClickCount = 0;
       let buttonHeight = 48;
       let buttonWidth = 80;
       let fontSize = 20;
 
-      // Xử lý nút NO
       noButton.addEventListener('click', () => {
         if (noClickCount >= MAX_NO_CLICKS) return;
 
         noClickCount++;
 
-        imageDisplay.src = IMAGE_PATHS[noClickCount % (IMAGE_PATHS.length - 1)];
+        // Update image and alt text
+        imageDisplay.src = IMAGE_PATHS[noClickCount];
+        imageDisplay.alt = ALT_TEXTS[noClickCount];
 
+        // Grow the "Yes" button
         buttonHeight += GROWTH_PER_CLICK;
         buttonWidth += GROWTH_PER_CLICK;
         fontSize += FONT_GROWTH_PER_CLICK;
@@ -253,20 +266,20 @@
         yesButton.style.width = `${buttonWidth}px`;
         yesButton.style.fontSize = `${fontSize}px`;
 
+        // Update "No" button text
         noButton.textContent = NO_BUTTON_MESSAGES[noClickCount];
       });
 
-      // Xử lý nút YES
       yesButton.addEventListener('click', () => {
-        // Đổi sang ảnh mèo ăn mừng
         imageDisplay.src = IMAGE_PATHS[IMAGE_PATHS.length - 1];
-        
+        imageDisplay.alt = ALT_TEXTS[ALT_TEXTS.length - 1];
         valentineQuestion.textContent = 'Yayyy!! Chọn lịch đi chơi nè :3';
         responseButtons.style.display = 'none';
 
+        // Hiện bảng chọn
         optionsContainer.classList.remove('hidden');
 
-        // Bắn pháo hoa trái tim
+        // Heart-shaped confetti
         const heart = confetti.shapeFromPath({
           path: 'M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z',
         });
@@ -278,7 +291,7 @@
         confetti({ ...defaults, particleCount: 10, scalar: 4 });
       });
 
-      // Xử lý bấm nút Chốt đơn
+      // Xử lý chốt đơn
       submitOptionsBtn.addEventListener('click', () => {
         const selectedLoc = document.querySelector('input[name="location"]:checked').value;
         let food = "", acts = [];
