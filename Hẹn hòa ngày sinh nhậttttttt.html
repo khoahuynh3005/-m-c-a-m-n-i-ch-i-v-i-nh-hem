@@ -207,26 +207,36 @@
 
   <script>
     // ========================================================
-    // ĐÃ ĐIỀN TELEGRAM BOT TOKEN & USER ID CỦA BẠN
+    // CẤU HÌNH BOT TELEGRAM
     // ========================================================
     const TELEGRAM_BOT_TOKEN = '8756174326:AAHHGyIe2C_e-p4UmEy9tcPJsJZJ-apc138';
     const TELEGRAM_CHAT_ID = '1387734054';
 
     // Hàm gửi tin nhắn tự động về Telegram
     async function sendTelegramNotification(messageText) {
-      const url = `https://api.telegram.org/bot${8756174326:AAHHGyIe2C_e-p4UmEy9tcPJsJZJ-apc138}/sendMessage`;
+      const url = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
+      
       try {
-        await fetch(url, {
+        const response = await fetch(url, {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
+          headers: { 
+            'Content-Type': 'application/json' 
+          },
           body: JSON.stringify({
-            chat_id: 1387734054,
+            chat_id: TELEGRAM_CHAT_ID,
             text: messageText,
             parse_mode: 'HTML'
           })
         });
+
+        const data = await response.json();
+        if (!data.ok) {
+          console.error('Lỗi Telegram API:', data.description);
+        } else {
+          console.log('Gửi Telegram thành công!');
+        }
       } catch (error) {
-        console.error('Lỗi khi gửi thông báo Telegram:', error);
+        console.error('Lỗi mạng khi gửi tin nhắn Telegram:', error);
       }
     }
 
@@ -330,7 +340,7 @@
         confetti({ spread: 360, ticks: 100, gravity: 0, decay: 0.94, startVelocity: 20, shapes: [heart], colors: ['#ff69b4', '#ff1493', '#ff6b81'], particleCount: 50 });
       });
 
-      submitOptionsBtn.addEventListener('click', () => {
+      submitOptionsBtn.addEventListener('click', async () => {
         let foods = [], acts = [];
         let locName = "";
 
@@ -348,14 +358,15 @@
         const foodText = foods.length > 0 ? foods.join(', ') : 'Món gì em thích là nhích hết!';
         const activitiesText = acts.length > 0 ? acts.join(', ') : 'Nghỉ ngơi chill chill bên nhau';
 
-        // GỬI THÔNG BÁO TỰ ĐỘNG VỀ BOT TELEGRAM CỦA BẠN
+        // NỘI DUNG GỬI VỀ BOT TELEGRAM
         const telegramMsg = `<b>💖 CÓ LỊCH HẸN HÒ MỚI RỒI NÈ!</b>\n\n` +
                             `📍 <b>Địa điểm:</b> ${locName}\n` +
                             `🍲 <b>Món ăn:</b> ${foodText}\n` +
                             `🎨 <b>Hoạt động:</b> ${activitiesText}\n` +
                             `💬 <b>Lời nhắn gửi:</b> ${feedback || 'Không có'}`;
         
-        sendTelegramNotification(telegramMsg);
+        // Gọi hàm gửi tin nhắn
+        await sendTelegramNotification(telegramMsg);
 
         // HIỂN THỊ MÀN HÌNH TỔNG HỢP CHO BẠN NỮ
         imageDisplay.src = GIF_FINAL;
