@@ -214,13 +214,13 @@
 
     // Hàm gửi tin nhắn tự động về Telegram
     async function sendTelegramNotification(messageText) {
-      const url = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
+      const url = `https://api.telegram.org/bot${8756174326:AAHHGyIe2C_e-p4UmEy9tcPJsJZJ-apc138}/sendMessage`;
       try {
         await fetch(url, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
-            chat_id: TELEGRAM_CHAT_ID,
+            chat_id: 1387734054,
             text: messageText,
             parse_mode: 'HTML'
           })
